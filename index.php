@@ -58,7 +58,7 @@
         left: calc(50% + 10px);
     }
 </style>
-<link rel="icon" href="favicon.ico">
+<link rel="icon" href="/favicon.ico">
 </head>
 <body>
     
@@ -195,5 +195,21 @@ html(lang="en")
     input.getSession().on('change', convertToPug);
     vars.getSession().on('change', convertToPug);
 </script>
+
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["setDomains", ["*.pug-php-demo-kylekatarn.c9users.io","*.jade-filters.selfbuild.fr","*.pug-filters.selfbuild.fr"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.selfbuild.fr/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 18]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//piwik.selfbuild.fr/piwik.php?idsite=18" style="border:0;" alt="" /></p></noscript>
+
 </body>
 </html>
