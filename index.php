@@ -77,17 +77,16 @@ html(lang="en")
          bar(1 + 5)
       }
   body
-    h1 Jade - node template engine
+    h1= pageTitle
     #container.col
       if youAreUsingJade
         p You are amazing
       else
         p Get on it!
       p.
-        Jade is a terse and simple
-        templating language with a
-        strong focus on performance
-        and powerful features.</div>
+        Pug.php is PHP port Pug (JS)
+        the node template engine
+        (previously named Jade).</div>
 
 <div id="vars">array(
   'pageTitle' => 'Try Pug.php and never recode HTML again',
@@ -105,14 +104,13 @@ html(lang="en")
     &lt;/script>
   &lt;/head>
   &lt;body>
-    &lt;h1>Pug.php is PHP port Pug (JS) the node template engine (previously named Jade)&lt;/h1>
+    &lt;h1>Try Pug.php and never recode HTML again&lt;/h1>
     &lt;div id="container" class="col">
       &lt;p>You are amazing&lt;/p>
       &lt;p>
-        Pug is a terse and simple
-        templating language with a
-        strong focus on performance
-        and powerful features.
+        Pug.php is PHP port of Pug (JS)
+        the node template engine
+        (previously named Jade).
       &lt;/p>
     &lt;/div>
   &lt;/body>
