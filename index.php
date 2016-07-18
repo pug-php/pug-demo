@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+$version = '';
+
+if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
+    $version = file_get_contents(__DIR__ . '/var/cache/pug-version.txt');
+}
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Try Pug.php and never recode HTML again</title>
@@ -33,6 +40,9 @@
     aside a:hover {
         text-decoration: underline;
     }
+    sup {
+        color: gray;
+    }
     #input,
     #output,
     #vars {
@@ -62,7 +72,7 @@
 </head>
 <body>
     
-<h1>Pug.php demonstration</h1>
+<h1>Try Pug.php <sup><small><?php echo $version; ?></small></sup></h1>
 
 <aside><a href="http://pug-filters.selfbuild.fr/">Pug.php filters</a></aside>
 

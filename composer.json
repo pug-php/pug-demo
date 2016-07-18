@@ -1,6 +1,6 @@
 {
     "require": {
         "php": ">=5.3.3",
-        "pug-php/pug": "^1.12"
+        "pug-php/pug": ">=1.12"
     }
 }

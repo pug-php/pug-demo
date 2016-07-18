@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5b4fb0c04f9749925033cfd202c70a29",
-    "content-hash": "d2f6a784b56395bd47747e840d75bba2",
+    "hash": "40a9b8bef3f10a5732f0f0164a311c3d",
+    "content-hash": "5f2882ec875c94cf25c667f600c68256",
     "packages": [
         {
             "name": "pug-php/pug",
-            "version": "1.12.1",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/pug.git",
-                "reference": "98f2bb9b5c3afe0901e5bd0f751b3dc1a9c1fcb3"
+                "reference": "b85ef9557b6c7e97614912249807ccfebdd3f9df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/pug/zipball/98f2bb9b5c3afe0901e5bd0f751b3dc1a9c1fcb3",
-                "reference": "98f2bb9b5c3afe0901e5bd0f751b3dc1a9c1fcb3",
+                "url": "https://api.github.com/repos/pug-php/pug/zipball/b85ef9557b6c7e97614912249807ccfebdd3f9df",
+                "reference": "b85ef9557b6c7e97614912249807ccfebdd3f9df",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
                 "pug",
                 "template"
             ],
-            "time": "2016-06-30 09:00:54"
+            "time": "2016-07-09 16:02:13"
         }
     ],
     "packages-dev": [],
