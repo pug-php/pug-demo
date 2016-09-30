@@ -5,8 +5,18 @@ use Pug\Pug;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $pug = new Pug(array(
-    'singleQuote' => false,
-    'prettyprint' => true,
+    'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
+    'allowMixinOverride' => !empty($_POST['allowMixinOverride']),
+    'classAttribute'     => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
+    'expressionLanguage' => 'auto',
+    'indentChar'         => str_replace('\\t', "\t", $_POST['indentChar']),
+    'indentSize'         => $_POST['indentSize'],
+    'keepBaseName'       => !empty($_POST['keepBaseName']),
+    'keepNullAttributes' => !empty($_POST['keepNullAttributes']),
+    'phpSingleLine'      => !empty($_POST['phpSingleLine']),
+    'prettyprint'        => !empty($_POST['prettyprint']),
+    'restrictedScope'    => !empty($_POST['restrictedScope']),
+    'singleQuote'        => !empty($_POST['singleQuote']),
 ));
 
 $vars = eval('return ' . $_POST['vars'] . ';');
