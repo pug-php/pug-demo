@@ -91,7 +91,7 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
     #options input[type="text"],
     #options input[type="number"],
     #options select {
-        width: 40px;
+        width: 60px;
         box-sizing: border-box;
     }
     #output {
