@@ -4,24 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40a9b8bef3f10a5732f0f0164a311c3d",
+    "hash": "e92bf65b05abb24432aeaef876be8cc9",
     "content-hash": "5f2882ec875c94cf25c667f600c68256",
     "packages": [
         {
-            "name": "pug-php/pug",
-            "version": "1.13.0",
+            "name": "js-phpize/js-phpize",
+            "version": "0.1.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pug-php/pug.git",
-                "reference": "b85ef9557b6c7e97614912249807ccfebdd3f9df"
+                "url": "https://github.com/pug-php/js-phpize.git",
+                "reference": "dcd1d6d1de9985aa121827f47a074ebc2553ac46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/pug/zipball/b85ef9557b6c7e97614912249807ccfebdd3f9df",
-                "reference": "b85ef9557b6c7e97614912249807ccfebdd3f9df",
+                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/dcd1d6d1de9985aa121827f47a074ebc2553ac46",
+                "reference": "dcd1d6d1de9985aa121827f47a074ebc2553ac46",
                 "shasum": ""
             },
             "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": ">=4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsPhpize": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Katarn",
+                    "email": "kylekatarnls@gmail.com"
+                }
+            ],
+            "description": "Convert js-like syntax to standalone PHP code.",
+            "time": "2016-10-01 13:45:43"
+        },
+        {
+            "name": "pug-php/pug",
+            "version": "2.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pug-php/pug.git",
+                "reference": "b90756408a760f01f8e309644908a2b67d427efd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pug-php/pug/zipball/b90756408a760f01f8e309644908a2b67d427efd",
+                "reference": "b90756408a760f01f8e309644908a2b67d427efd",
+                "shasum": ""
+            },
+            "require": {
+                "js-phpize/js-phpize": ">=0.1.0",
                 "php": ">=5.3.0"
             },
             "replace": {
@@ -81,7 +122,7 @@
                 "pug",
                 "template"
             ],
-            "time": "2016-07-09 16:02:13"
+            "time": "2016-09-21 10:00:48"
         }
     ],
     "packages-dev": [],

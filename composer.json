@@ -2,5 +2,8 @@
     "require": {
         "php": ">=5.3.3",
         "pug-php/pug": ">=1.12"
+    },
+    "scripts": {
+        "post-autoload-dump": "php update.php"
     }
 }
