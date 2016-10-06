@@ -4,11 +4,16 @@ use Pug\Pug;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$expressionLanguages = array(
+  'php',
+  'js'
+);
+
 $pug = new Pug(array(
     'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
     'allowMixinOverride' => !empty($_POST['allowMixinOverride']),
     'classAttribute'     => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
-    'expressionLanguage' => 'auto',
+    'expressionLanguage' => in_array($_POST['expressionLanguage'], $expressionLanguages) ? $_POST['expressionLanguage'] : 'auto',
     'indentChar'         => str_replace('\\t', "\t", $_POST['indentChar']),
     'indentSize'         => intval($_POST['indentSize']),
     'keepBaseName'       => !empty($_POST['keepBaseName']),
