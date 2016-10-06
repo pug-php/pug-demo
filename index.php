@@ -102,7 +102,7 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
 <link rel="icon" href="/favicon.ico">
 </head>
 <body>
-    
+
 <h1>Try Pug.php <sup><small><?php echo $version; ?></small></sup></h1>
 
 <aside><a href="http://pug-filters.selfbuild.fr/">Pug.php filters</a></aside>
@@ -165,6 +165,10 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
                 <td>singleQuote</td>
                 <td><input type="checkbox" onclick="convertToPug(event)"></td>
             </tr>
+            <tr>
+                <td style="border-top: 2px solid white;">compileOnly</td>
+                <td style="border-top: 2px solid white;"><input type="checkbox" onclick="convertToPug(event)" name="compileOnly"></td>
+            </tr>
         </table>
     </div>
 </div>
@@ -216,12 +220,14 @@ html(lang="en")
     &lt;/div>
   &lt;/body>
 &lt;/html></div>
-    
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-jade.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-html.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-php.js" type="text/javascript" charset="utf-8"></script>
 <script>
+    var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
+
     function convertToPug(e) {
         var xhr;
 
@@ -229,9 +235,9 @@ html(lang="en")
             xhr = new XMLHttpRequest();
         } else {
             var versions = [
-                "MSXML2.XmlHttp.5.0", 
+                "MSXML2.XmlHttp.5.0",
                 "MSXML2.XmlHttp.4.0",
-                "MSXML2.XmlHttp.3.0", 
+                "MSXML2.XmlHttp.3.0",
                 "MSXML2.XmlHttp.2.0",
                 "Microsoft.XmlHttp"
             ];
@@ -249,14 +255,20 @@ html(lang="en")
             if (xhr.readyState < 4) {
                 return;
             }
-             
+
             if (xhr.status !== 200) {
                 return;
             }
 
             if (xhr.readyState === 4) {
+                var session = output.getSession();
+                if (compileOnlyInput.checked) {
+                  session.setMode("ace/mode/php");
+                } else {
+                  session.setMode("ace/mode/html");
+                }
                 output.setValue(xhr.responseText);
-            }           
+            }
         };
 
         var options = '';
@@ -278,7 +290,7 @@ html(lang="en")
             options
         );
     }
-    
+
     function editor(id, mode, readonly) {
         /* global ace */
         var editor = ace.edit(id);
@@ -311,7 +323,7 @@ html(lang="en")
 
     input.getSession().on('change', convertToPug);
     vars.getSession().on('change', convertToPug);
-    
+
 
     var _paq = _paq || [];
     _paq.push(["setDomains", ["*.pug-php-demo-kylekatarn.c9users.io","*.jade-filters.selfbuild.fr","*.pug-filters.selfbuild.fr"]]);
