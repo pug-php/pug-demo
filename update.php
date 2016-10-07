@@ -18,7 +18,6 @@ $lastUpdate = filemtime(__DIR__ . '/vendor/autoload.php');
 
 if (in_array('--dump-version', $argv)) {
     dumpVersion();
-    
 } elseif (time() - $lastUpdate >= 6 * 3600) {
     shell_exec('composer update');
     dumpVersion();
