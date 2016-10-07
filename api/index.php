@@ -22,7 +22,11 @@ $pug = new Pug(array(
 $vars = eval('return ' . $_POST['vars'] . ';');
 
 try {
-    echo $pug->render($_POST['pug'], $vars);
+    if (empty($_POST['compileOnly'])) {
+        echo $pug->render($_POST['pug'], $vars);
+    } else {
+        echo $pug->compile($_POST['pug']);
+    }
 } catch (\Exception $e) {
     $message = trim($e->getMessage());
     echo 'Error' . (substr($message, 0, 1) === '('
