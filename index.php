@@ -69,7 +69,7 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
         height: 0;
         right: calc(50% + 10px);
         overflow: visible;
-        z-index: 2;
+        z-index: 8;
     }
     #options a {
         color: white;
