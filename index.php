@@ -158,10 +158,6 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
                 <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
             </tr>
             <tr>
-                <td>pugjs</td>
-                <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
-            </tr>
-            <tr>
                 <td>restrictedScope</td>
                 <td><input type="checkbox" onclick="convertToPug(event)"></td>
             </tr>
