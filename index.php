@@ -69,7 +69,7 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
         height: 0;
         right: calc(50% + 10px);
         overflow: visible;
-        z-index: 2;
+        z-index: 8;
     }
     #options a {
         color: white;
@@ -155,6 +155,10 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
             </tr>
             <tr>
                 <td>prettyprint</td>
+                <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
+            </tr>
+            <tr>
+                <td>pugjs</td>
                 <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
             </tr>
             <tr>

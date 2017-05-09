@@ -20,6 +20,7 @@ $pug = new Pug(array(
     'keepNullAttributes' => !empty($_POST['keepNullAttributes']),
     'phpSingleLine'      => !empty($_POST['phpSingleLine']),
     'prettyprint'        => !empty($_POST['prettyprint']),
+    'pugjs'              => !empty($_POST['pugjs']),
     'restrictedScope'    => !empty($_POST['restrictedScope']),
     'singleQuote'        => !empty($_POST['singleQuote']),
 ));
