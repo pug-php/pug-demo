@@ -9,6 +9,8 @@ $expressionLanguages = array(
   'js'
 );
 
+NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
+
 $pug = new Pug(array(
     'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
     'allowMixinOverride' => !empty($_POST['allowMixinOverride']),

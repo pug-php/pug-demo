@@ -16,4 +16,5 @@ echo shell_exec('node --version');
 echo '<pre>';
 dumpDirectory(__DIR__ . '/vendor/nodejs-php-fallback');
 dumpDirectory(__DIR__ . '/vendor/pug-php');
+dumpDirectory(__DIR__ . '/node_modules');
 echo '<pre>';

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/pug-php/pug-demo/issues"
   },
-  "homepage": "https://github.com/pug-php/pug-demo#readme"
+  "homepage": "https://github.com/pug-php/pug-demo#readme",
+  "dependencies": {
+    "pug-cli": "^1.0.0-alpha6"
+  }
 }
