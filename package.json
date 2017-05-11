@@ -1,0 +1,19 @@
+{
+  "name": "pug-demo",
+  "version": "1.0.0",
+  "description": "package.json only needed to avoid nodejs detection problems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pug-php/pug-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pug-php/pug-demo/issues"
+  },
+  "homepage": "https://github.com/pug-php/pug-demo#readme"
+}
