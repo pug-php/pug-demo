@@ -1,5 +1,6 @@
 <?php
 
+use NodejsPhpFallback\NodejsPhpFallback;
 use Pug\Pug;
 
 require_once __DIR__ . '/../vendor/autoload.php';

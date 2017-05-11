@@ -49,16 +49,16 @@
         },
         {
             "name": "nodejs-php-fallback/nodejs-php-fallback",
-            "version": "1.2.5",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kylekatarnls/nodejs-php-fallback.git",
-                "reference": "9749fbc04fbfbb378603eac2906750728cb0ef10"
+                "reference": "ba785db1897c87c0b74fbcf307ae4a3c5ce8928a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kylekatarnls/nodejs-php-fallback/zipball/9749fbc04fbfbb378603eac2906750728cb0ef10",
-                "reference": "9749fbc04fbfbb378603eac2906750728cb0ef10",
+                "url": "https://api.github.com/repos/kylekatarnls/nodejs-php-fallback/zipball/ba785db1897c87c0b74fbcf307ae4a3c5ce8928a",
+                "reference": "ba785db1897c87c0b74fbcf307ae4a3c5ce8928a",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
             "require-dev": {
                 "codeclimate/php-test-reporter": "dev-master",
                 "composer/composer": "^1.2",
-                "phpunit/phpunit": ">=4.0"
+                "phpunit/phpunit": ">=4.8 <6.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -87,20 +87,20 @@
                 }
             ],
             "description": "Allow you to call node.js module or scripts throught PHP and call a fallback function if node.js is not available",
-            "time": "2016-08-01 19:30:27"
+            "time": "2017-05-11 16:45:19"
         },
         {
             "name": "pug-php/pug",
-            "version": "2.5.7",
+            "version": "2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/pug.git",
-                "reference": "54e7505c59d73a1aeb971b42510e11412aaed60f"
+                "reference": "b4c50ec3ea2f7f01d794a85c98c9c819a524d352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/pug/zipball/54e7505c59d73a1aeb971b42510e11412aaed60f",
-                "reference": "54e7505c59d73a1aeb971b42510e11412aaed60f",
+                "url": "https://api.github.com/repos/pug-php/pug/zipball/b4c50ec3ea2f7f01d794a85c98c9c819a524d352",
+                "reference": "b4c50ec3ea2f7f01d794a85c98c9c819a524d352",
                 "shasum": ""
             },
             "require": {
@@ -251,7 +251,7 @@
                 "pug",
                 "template"
             ],
-            "time": "2017-05-08 13:49:21"
+            "time": "2017-05-11 16:35:44"
         }
     ],
     "packages-dev": [],
