@@ -4,6 +4,6 @@
         "pug-php/pug": ">=1.12"
     },
     "scripts": {
-        "post-autoload-dump": "php update.php --dump-version"
+        "post-autoload-dump": "php update.php"
     }
 }

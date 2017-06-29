@@ -17,4 +17,5 @@ echo '<pre>';
 dumpDirectory(__DIR__ . '/vendor/nodejs-php-fallback');
 dumpDirectory(__DIR__ . '/vendor/pug-php');
 dumpDirectory(__DIR__ . '/node_modules');
+dumpDirectory(__DIR__ . '/var/engines');
 echo '<pre>';

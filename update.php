@@ -60,18 +60,19 @@ foreach ($enginesRepositories as $repository => $url) {
     }
     $tags = json_decode(file_get_contents($versionCache));
     foreach ($tags as $tag) {
+        echo "Load $url $tag\n";
         $optionsHtml .= '<option value="' . $tag->name . '">' . $tag->name . '</option>';
         $versionDirectory = $directory . DIRECTORY_SEPARATOR . $tag->name;
         if (needDirectory($versionDirectory)) {
             chdir($versionDirectory);
-            shell_exec('git clone ' . $gitHost . $url . ' .');
-            shell_exec('git checkout tags/' . $tag->name);
+            echo shell_exec('git clone ' . $gitHost . $url . ' .');
+            echo shell_exec('git checkout tags/' . $tag->name);
             foreach (array('tests', 'examples') as $ignore) {
                 if (file_exists($ignore)) {
                     shell_exec('rm -rf ' . $ignore);
                 }
             }
-            shell_exec('composer update --no-dev &');
+            echo shell_exec('composer update --no-dev &');
         }
     }
     file_put_contents($cacheDirectory . DIRECTORY_SEPARATOR . $repository . '-versions-options.html', $optionsHtml);

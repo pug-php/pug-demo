@@ -2,10 +2,6 @@
 
 use Phug\Phug;
 
-if (!file_exists(__DIR__ . '/../var/engines')) {
-    chdir(__DIR__ . '/..');
-    shell_exec('php update.php &');
-}
 if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php')) {
     echo 'Update in progress, please retry in few minutes.';
     exit;
