@@ -48,7 +48,7 @@ foreach ($enginesRepositories as $repository => $url) {
             ));
             if (!is_object($items)) {
                 $items = @json_decode(file_get_contents(
-                    __DIR__ . '/../' . $url . '-tags.json'
+                    __DIR__ . '/fallback/' . $url . '-tags.json'
                 ));
             }
             $list = array_merge($list, $items);
