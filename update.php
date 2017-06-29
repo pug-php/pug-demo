@@ -46,9 +46,9 @@ foreach ($enginesRepositories as $repository => $url) {
                 false,
                 $apiContext
             ));
-            if (!is_object($items)) {
+            if (!is_array($items)) {
                 $items = @json_decode(file_get_contents(
-                    __DIR__ . '/fallback/' . $url . '-tags.json'
+                    __DIR__ . '/fallback/' . $repository . '-tags.json'
                 ));
             }
             $list = array_merge($list, $items);
@@ -58,12 +58,14 @@ foreach ($enginesRepositories as $repository => $url) {
         }
         file_put_contents($versionCache, json_encode($list));
     }
+    $touched = false;
     $tags = json_decode(file_get_contents($versionCache));
     foreach ($tags as $tag) {
-        echo "Load $url $tag\n";
+        echo "Load $url {$tag->name}\n";
         $optionsHtml .= '<option value="' . $tag->name . '">' . $tag->name . '</option>';
         $versionDirectory = $directory . DIRECTORY_SEPARATOR . $tag->name;
         if (needDirectory($versionDirectory)) {
+            $touched = true;
             chdir($versionDirectory);
             echo shell_exec('git clone ' . $gitHost . $url . ' .');
             echo shell_exec('git checkout tags/' . $tag->name);
@@ -75,5 +77,7 @@ foreach ($enginesRepositories as $repository => $url) {
             echo shell_exec('composer update --no-dev &');
         }
     }
-    file_put_contents($cacheDirectory . DIRECTORY_SEPARATOR . $repository . '-versions-options.html', $optionsHtml);
+    if ($touched) {
+        file_put_contents($cacheDirectory . DIRECTORY_SEPARATOR . $repository . '-versions-options.html', $optionsHtml);
+    }
 }
