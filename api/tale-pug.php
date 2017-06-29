@@ -1,0 +1,35 @@
+<?php
+
+use Tale\Pug\Renderer;
+
+if (!file_exists(__DIR__ . '/../var/engines')) {
+    chdir(__DIR__ . '/..');
+    shell_exec('php update.php &');
+}
+if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php')) {
+    echo 'Update in progress, please retry in few minutes.';
+    exit;
+}
+
+require_once __DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php';
+
+$renderer = new Renderer(array(
+    'pretty' => !empty($_POST['prettyprint']),
+));
+
+$vars = eval('return ' . $_POST['vars'] . ';');
+
+try {
+    if (empty($_POST['compileOnly'])) {
+        extract($vars);
+        eval('?>'.$renderer->getCompiler()->compile($_POST['pug']));
+    } else {
+        echo $renderer->getCompiler()->compile($_POST['pug']);
+    }
+} catch (\Exception $e) {
+    $message = trim($e->getMessage());
+    echo 'Error' . (substr($message, 0, 1) === '('
+        ? preg_replace('/^\((\d+)\)(\s*:)?/', ' line $1:', $message)
+        : ': ' . $message
+    );
+}

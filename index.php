@@ -1,20 +1,17 @@
 <?php
-$version = '';
-
-if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
-    $version = file_get_contents(__DIR__ . '/var/cache/pug-version.txt');
-}
-
+$engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Try Pug.php and never recode HTML again</title>
 <style type="text/css" media="screen">
-    html, body {
+    html,
+    body {
         padding: 0;
         margin: 0;
         font-family: sans-serif;
-        background: #c9c9c9;
+        background: #454545;
+        color: #c9c9c9;
     }
     aisde,
     h1,
@@ -26,15 +23,21 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
         font-weight: normal;
         text-align: center;
     }
-    p {
-        color: #454545;
+    h1 select {
+        width: 220px;
+        font-size: 32px;
+        padding: 4px;
+        border: 1px solid #232323;
+        background: #454545;
+        color: #c9c9c9;
+        border-radius: 2px;
     }
     aside {
         float: right;
         padding-right: 20px;
     }
     aside a {
-        color: #2030c0;
+        color: #90a0ff;
         text-decoration: none;
     }
     aside a:hover {
@@ -49,7 +52,8 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
         position: absolute;
         bottom: 20px;
         top: 120px;
-        box-shadow: -1px -1px 1px #848484;
+        border-radius: 2px;
+        border: 1px solid <?php echo isset($_GET['border']) ? $_GET['border'] : '#232323'; ?>;
     }
     #vars {
         top: auto;
@@ -82,10 +86,9 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
     }
     #options .list {
         display: none;
-        padding: 10px;
         clear: right;
         color: white;
-        background: rgba(75, 75, 75, 0.8);
+        background: <?php echo isset($_GET['options-color']) ? $_GET['options-color'] : 'rgba(75, 75, 75, 0.8)'; ?>;
         padding: 5px;
     }
     #options input[type="text"],
@@ -98,21 +101,106 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
         right: 20px;
         left: calc(50% + 10px);
     }
+    <?php if (isset($_GET['embed'])) { ?>
+        html,
+        body {
+            background: transparent;
+        }
+        #vars {
+            height: calc(33% - 5px);
+            left: 0;
+            bottom: 0;
+            right: calc(50% + 7px);
+        }
+        #input {
+            top: 0;
+            height: calc(66% - 5px);
+            left: 0;
+            right: calc(50% + 7px);
+        }
+        #output {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: calc(50% + 7px);
+        }
+        #options a {
+            color: gray;
+            background: rgba(0, 0, 0, 0.1);
+        }
+        #options {
+            top: 0;
+            height: 0;
+            right: calc(50% + 7px);
+        }
+        <?php if (isset($_GET['hide-vars'])) { ?>
+            #vars {
+                display: none;
+            }
+            #input {
+                height: 100%;
+            }
+        <?php } ?>
+    <?php } ?>
 </style>
 <link rel="icon" href="/favicon.ico">
 </head>
 <body>
 
-<h1>Try Pug.php <sup><small><?php echo $version; ?></small></sup></h1>
-
-<aside><a href="http://pug-filters.selfbuild.fr/">Pug.php filters</a></aside>
-
-<p>Type code in the left-hand panel to test Pug.php render.</p>
+<?php if (!isset($_GET['embed'])) { ?>
+    <h1>
+        Try
+        <select id="engine" onchange="convertToPug(event)">
+            <option value="pug-php"<?php if ($engine === 'pug-php') { ?> selected="selected"<?php } ?>>Pug-php</option>
+            <option value="tale-pug"<?php if ($engine === 'tale-pug') { ?> selected="selected"<?php } ?>>Tale-pug</option>
+            <option value="phug"<?php if ($engine === 'phug') { ?> selected="selected"<?php } ?>>Phug</option>
+        </select>
+        <select id="version-pug-php" onchange="convertToPug(event)"<?php if ($engine !== 'pug-php') { ?> style="display: none;"<?php } ?>>
+            <?php include __DIR__ . '/var/cache/pug-php-versions-options.html'; ?>
+        </select>
+        <select id="version-tale-pug" onchange="convertToPug(event)"<?php if ($engine !== 'tale-php') { ?> style="display: none;"<?php } ?>>
+            <?php include __DIR__ . '/var/cache/tale-pug-versions-options.html'; ?>
+        </select>
+        <select id="version-phug" onchange="convertToPug(event)"<?php if ($engine !== 'phug') { ?> style="display: none;"<?php } ?>>
+            <?php include __DIR__ . '/var/cache/phug-versions-options.html'; ?>
+        </select>
+    </h1>
+    
+    <aside><a href="http://pug-filters.selfbuild.fr/">Pug.php filters</a></aside>
+    
+    <p>Type code in the left-hand panel to test Pug.php render.</p>
+<?php } ?>
 
 <div id="options">
     <a href="#" onclick="toggleOptions(this)">Options</a>
     <div class="list">
         <table>
+            <?php if (isset($_GET['embed'])) { ?>
+                <tr>
+                    <td>engine</td>
+                    <td>
+                        <select id="engine" onchange="convertToPug(event)">
+                            <option value="pug-php"<?php if ($engine === 'pug-php') { ?> selected="selected"<?php } ?>>Pug-php</option>
+                            <option value="tale-pug"<?php if ($engine === 'tale-pug') { ?> selected="selected"<?php } ?>>Tale-pug</option>
+                            <option value="phug"<?php if ($engine === 'phug') { ?> selected="selected"<?php } ?>>Phug</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>version</td>
+                    <td>
+                        <select id="version-pug-php" onchange="convertToPug(event)"<?php if ($engine !== 'pug-php') { ?> style="display: none;"<?php } ?>>
+                            <?php include __DIR__ . '/var/cache/pug-php-versions-options.html'; ?>
+                        </select>
+                        <select id="version-tale-pug" onchange="convertToPug(event)"<?php if ($engine !== 'tale-php') { ?> style="display: none;"<?php } ?>>
+                            <?php include __DIR__ . '/var/cache/tale-pug-versions-options.html'; ?>
+                        </select>
+                        <select id="version-phug" onchange="convertToPug(event)"<?php if ($engine !== 'phug') { ?> style="display: none;"<?php } ?>>
+                            <?php include __DIR__ . '/var/cache/phug-versions-options.html'; ?>
+                        </select>
+                    </td>
+                </tr>
+            <?php } ?>
             <tr>
                 <td>allowMixedIndent</td>
                 <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
@@ -174,10 +262,15 @@ if (file_exists(__DIR__ . '/var/cache/pug-version.txt')) {
                 <td style="border-top: 2px solid white;"><input type="checkbox" onclick="convertToPug(event)" name="compileOnly"></td>
             </tr>
         </table>
+        <?php if (isset($_GET['export'])) { ?>
+            <button onclick="exportEmbed()" style="width: 100%;">Export</button>
+        <?php } ?>
     </div>
 </div>
 
-<div id="input">doctype html
+<div id="input"><?php if (isset($_GET['embed'])) {
+    echo isset($_GET['input']) ? $_GET['input'] : '';
+} else { ?>doctype html
 html(lang="en")
   head
     title= pageTitle
@@ -195,14 +288,17 @@ html(lang="en")
       p.
         Pug.php is PHP port Pug (JS)
         the node template engine
-        (previously named Jade).</div>
-
-<div id="vars">array(
+        (previously named Jade).<?php }
+?></div>
+<div id="vars"><?php if (isset($_GET['embed'])) {
+    echo isset($_GET['vars']) ? $_GET['vars'] : '';
+} else { ?>array(
   'pageTitle' => 'Try Pug.php and never recode HTML again',
   'youAreUsingJade' => true,
-)</div>
+)<?php }
+?></div>
 
-<div id="output">&lt;!DOCTYPE html>
+<div id="output"><?php if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 &lt;html lang="en">
   &lt;head>
     &lt;title>Try Pug.php and never recode HTML again&lt;/title>
@@ -223,7 +319,7 @@ html(lang="en")
       &lt;/p>
     &lt;/div>
   &lt;/body>
-&lt;/html></div>
+&lt;/html><?php } ?></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-jade.js" type="text/javascript" charset="utf-8"></script>
@@ -275,10 +371,19 @@ html(lang="en")
             }
         };
 
+        var engine = document.getElementById('engine').value || <?php echo json_encode($engine); ?>;
+        ['pug-php', 'tale-pug', 'phug'].forEach(function (repository) {
+            document.getElementById('version-' + repository).style.display = repository === engine ? 'inline' : 'none';
+        });
+        var version = document.getElementById('version-' + engine).value;
+
         var options = '';
         var children = document.querySelectorAll('#options tr');
         for (var i = 0; i < children.length; i++) {
             var name = children[i].querySelector('td').innerHTML;
+            if (~['engine', 'version'].indexOf(name)) {
+                continue;
+            }
             var field = children[i].querySelector('input, select');
             options += '&' + name + '=' + (field.type === 'checkbox'
                 ? (field.checked ? '1' : '')
@@ -286,19 +391,36 @@ html(lang="en")
             );
         }
 
-        xhr.open('POST', '/api/', true);
+        xhr.open('POST', '/api/' + engine + '.php', true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(
             'pug=' + encodeURIComponent(input.getValue()) +
             '&vars=' + encodeURIComponent(vars.getValue()) +
+            '&engine=' + encodeURIComponent(engine) +
+            '&version=' + encodeURIComponent(version) +
             options
         );
+    }
+    
+    function exportEmbed() {
+        var _engine = document.getElementById('engine').value || <?php echo json_encode($engine); ?>;
+        var _input = encodeURIComponent(input.getValue());
+        var _vars = encodeURIComponent(vars.getValue());
+        var link = '/?embed' +
+            '&theme=xcode'+
+            '&border=silver' +
+            '&options-color=rgba(120,120,120,0.5)' +
+            '&engine=' + _engine +
+            '&input=' + _input +
+            '&vars=' + _vars;
+
+        window.open(link);
     }
 
     function editor(id, mode, readonly) {
         /* global ace */
         var editor = ace.edit(id);
-        editor.setTheme("ace/theme/monokai");
+        editor.setTheme("ace/theme/<?php echo isset($_GET['theme']) ? $_GET['theme'] : 'monokai' ?>");
         var session = editor.getSession();
         session.setMode(mode);
         session.setTabSize(2);
@@ -327,6 +449,12 @@ html(lang="en")
 
     input.getSession().on('change', convertToPug);
     vars.getSession().on('change', convertToPug);
+    
+    <?php
+    if (isset($_GET['embed'])) {
+        echo 'convertToPug()';
+    }
+    ?>
 
 
     var _paq = _paq || [];

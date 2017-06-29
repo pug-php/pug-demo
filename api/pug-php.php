@@ -3,14 +3,25 @@
 use NodejsPhpFallback\NodejsPhpFallback;
 use Pug\Pug;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+if (!file_exists(__DIR__ . '/../var/engines')) {
+    chdir(__DIR__ . '/..');
+    shell_exec('php update.php &');
+}
+if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php')) {
+    echo 'Update in progress, please retry in few minutes.';
+    exit;
+}
+
+require_once __DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php';
 
 $expressionLanguages = array(
   'php',
   'js'
 );
 
-NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
+if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
+    NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
+}
 
 $pug = new Pug(array(
     'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
