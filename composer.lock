@@ -4,24 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e92bf65b05abb24432aeaef876be8cc9",
-    "content-hash": "5f2882ec875c94cf25c667f600c68256",
+    "hash": "694531ed890db30f09ca2b0151371d21",
+    "content-hash": "3fd8a51c86c688286d444001b5de7cc3",
     "packages": [
         {
             "name": "js-phpize/js-phpize",
-            "version": "1.11.0",
+            "version": "1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/js-phpize.git",
-                "reference": "9261183db57139a08c0684bd875486ade0789240"
+                "reference": "b74e3b7d947c3d67ab1fcb46d02992a20b79b681"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/9261183db57139a08c0684bd875486ade0789240",
-                "reference": "9261183db57139a08c0684bd875486ade0789240",
+                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/b74e3b7d947c3d67ab1fcb46d02992a20b79b681",
+                "reference": "b74e3b7d947c3d67ab1fcb46d02992a20b79b681",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
@@ -45,7 +46,7 @@
                 }
             ],
             "description": "Convert js-like syntax to standalone PHP code.",
-            "time": "2017-09-06 09:20:12"
+            "time": "2017-09-07 16:06:40"
         },
         {
             "name": "nodejs-php-fallback/nodejs-php-fallback",
@@ -264,7 +265,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "ext-mbstring": "*"
     },
     "platform-dev": []
 }
