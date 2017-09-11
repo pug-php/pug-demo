@@ -39,7 +39,8 @@ $vars = eval('return ' . $_POST['vars'] . ';');
 
 try {
     if (empty($_POST['compileOnly'])) {
-        Phug::displayString($_POST['pug'], $vars ?: array(), $options);
+        $method = is_callable(['Phug', 'displayString']) ? 'displayString' : 'display';
+        Phug::$method($_POST['pug'], $vars ?: array(), $options);
     } else {
         echo Phug::getRenderer($options)->getCompiler()->compile($_POST['pug']);
     }
