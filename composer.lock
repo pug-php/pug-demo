@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "js-phpize/js-phpize",
-            "version": "1.11.1",
+            "version": "1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/js-phpize.git",
-                "reference": "b74e3b7d947c3d67ab1fcb46d02992a20b79b681"
+                "reference": "857dcc97139eb70b3468618e58535434ec16f442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/b74e3b7d947c3d67ab1fcb46d02992a20b79b681",
-                "reference": "b74e3b7d947c3d67ab1fcb46d02992a20b79b681",
+                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/857dcc97139eb70b3468618e58535434ec16f442",
+                "reference": "857dcc97139eb70b3468618e58535434ec16f442",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "Convert js-like syntax to standalone PHP code.",
-            "time": "2017-09-07 16:06:40"
+            "time": "2017-09-27 15:52:38"
         },
         {
             "name": "nodejs-php-fallback/nodejs-php-fallback",
