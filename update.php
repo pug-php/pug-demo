@@ -60,6 +60,24 @@ foreach ($enginesRepositories as $repository => $url) {
     }
     $touched = false;
     $tags = json_decode(file_get_contents($versionCache));
+    usort($tags, function ($a, $b) {
+        $a = strtolower($a->name);
+        $b = strtolower($b->name);
+        if ($a === $b) {
+            return 0;
+        }
+        if (strpos($a, $b) === 0) {
+            return 1;
+        }
+        if (strpos($b, $a) === 0) {
+            return -1;
+        }
+        
+        $tab = [$a, $b];
+        sort($tab, SORT_STRING);
+        
+        return $a === $tab[0] ? 1 : -1;
+    });
     foreach ($tags as $tag) {
         echo "Load $url {$tag->name}\n";
         $optionsHtml .= '<option value="' . $tag->name . '">' . $tag->name . '</option>';
