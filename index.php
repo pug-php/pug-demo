@@ -54,6 +54,7 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
         top: 120px;
         border-radius: 2px;
         border: 1px solid <?php echo isset($_GET['border']) ? $_GET['border'] : '#232323'; ?>;
+        box-sizing: border-box;
     }
     #vars {
         top: auto;
@@ -290,13 +291,15 @@ html(lang="en")
         the node template engine
         (previously named Jade).<?php }
 ?></div>
-<div id="vars"><?php if (isset($_GET['embed'])) {
+<?php if (!isset($_GET['hide-vars'])) {
+?><div id="vars"><?php if (isset($_GET['embed'])) {
     echo isset($_GET['vars']) ? $_GET['vars'] : '';
 } else { ?>array(
   'pageTitle' => 'Try Pug.php and never recode HTML again',
   'youAreUsingJade' => true,
 )<?php }
-?></div>
+?></div><?php }
+?>
 
 <div id="output"><?php if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 &lt;html lang="en">
