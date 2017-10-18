@@ -391,7 +391,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
                 } else {
                   session.setMode("ace/mode/html");
                 }
-                output.setValue(xhr.responseText);
+                output.setValue(xhr.responseText, 1);
                 document.getElementById('preview').innerHTML = xhr.responseText;
             }
         };
