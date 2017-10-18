@@ -48,6 +48,7 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
     }
     #input,
     #output,
+    #preview,
     #vars {
         position: absolute;
         bottom: 20px;
@@ -76,12 +77,20 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
         overflow: visible;
         z-index: 8;
     }
+    #right-buttons a,
     #options a {
         color: white;
         float: right;
         padding: 10px;
         text-decoration: none;
     }
+    #right-buttons a {
+        position: absolute;
+        top: 120px;
+        right: 20px;
+        z-index: 2;
+    }
+    #right-buttons a:hover,
     #options a:hover {
         background: rgba(255, 255, 255, 0.2);
     }
@@ -98,9 +107,13 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
         width: 60px;
         box-sizing: border-box;
     }
+    #preview,
     #output {
         right: 20px;
         left: calc(50% + 10px);
+    }
+    #preview {
+        display: none;
     }
     <?php if (isset($_GET['embed'])) { ?>
         html,
@@ -119,6 +132,7 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
             left: 0;
             right: calc(50% + 7px);
         }
+        #preview,
         #output {
             top: 0;
             bottom: 0;
@@ -301,7 +315,8 @@ html(lang="en")
 ?></div><?php }
 ?>
 
-<div id="output"><?php if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
+<div id="output"><?php
+if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 &lt;html lang="en">
   &lt;head>
     &lt;title>Try Pug.php and never recode HTML again&lt;/title>
@@ -323,6 +338,11 @@ html(lang="en")
     &lt;/div>
   &lt;/body>
 &lt;/html><?php } ?></div>
+<div id="preview"></div>
+<div id="right-buttons">
+    <a href="#" onclick="sources(event)" id="sources-button" style="display: none;">Sources</a>
+    <a href="#" onclick="preview(event)" id="preview-button">Preview</a>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-jade.js" type="text/javascript" charset="utf-8"></script>
@@ -371,6 +391,7 @@ html(lang="en")
                   session.setMode("ace/mode/html");
                 }
                 output.setValue(xhr.responseText);
+                document.getElementById('preview').innerHTML = xhr.responseText;
             }
         };
 
@@ -439,6 +460,22 @@ html(lang="en")
         var list = document.querySelector('#options .list');
         link.innerHTML = list.style.display === 'block' ? 'Options' : 'Fermer';
         list.style.display = list.style.display === 'block' ? '' : 'block';
+    }
+
+    function preview(e) {
+        document.getElementById('preview').style.display = 'block';
+        document.getElementById('output').style.display = 'none';
+        document.getElementById('sources-button').style.display = 'block';
+        document.getElementById('preview-button').style.display = 'none';
+        convertToPug(e);
+    }
+
+    function sources(e) {
+        document.getElementById('preview').style.display = 'none';
+        document.getElementById('output').style.display = 'block';
+        document.getElementById('sources-button').style.display = 'none';
+        document.getElementById('preview-button').style.display = 'block';
+        convertToPug(e);
     }
 
     var input = editor("input", "ace/mode/jade");
