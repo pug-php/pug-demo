@@ -1,5 +1,6 @@
 <?php
 $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
+$varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,13 +60,13 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
     }
     #vars {
         top: auto;
-        height: calc(33% - 53px);
+        height: calc(<?php echo $varsHeight; ?>% - 53px);
         left: 20px;
         right: calc(50% + 10px);
     }
     #input {
         bottom: auto;
-        height: calc(66% - 106px);
+        height: calc(<?php echo 100 - $varsHeight; ?>% - 106px);
         left: 20px;
         right: calc(50% + 10px);
     }
@@ -121,14 +122,14 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
             background: transparent;
         }
         #vars {
-            height: calc(33% - 5px);
+            height: calc(<?php echo $varsHeight; ?>% - 5px);
             left: 0;
             bottom: 0;
             right: calc(50% + 7px);
         }
         #input {
             top: 0;
-            height: calc(66% - 5px);
+            height: calc(<?php echo 100 - $varsHeight; ?>% - 5px);
             left: 0;
             right: calc(50% + 7px);
         }
