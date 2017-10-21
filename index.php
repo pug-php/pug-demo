@@ -123,7 +123,10 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
     }
     #preview {
         display: none;
-        background: silver;
+        color: gray;
+    }
+    #preview pre {
+        background: gray;
     }
     #h-resize {
         left: calc(50% - 7px);
