@@ -175,7 +175,7 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
             right: 0;
             left: calc(50% + 7px);
         }
-        #right-buttons a
+        #right-buttons a,
         #options a {
             color: gray;
             background: rgba(0, 0, 0, 0.1);
