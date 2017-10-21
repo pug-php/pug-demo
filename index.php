@@ -488,6 +488,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         session.setMode(mode);
         session.setTabSize(2);
         editor.setShowPrintMargin(false);
+        editor.setAutoScrollEditorIntoView(true);
         if (readonly) {
             editor.setReadOnly(true);
         }
@@ -555,6 +556,51 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     };
     var minWidth = 80;
     var minHeight = 60;
+    var resize = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+    function setInputWidth(inputWidth, outputWidth) {
+        resize.inputWidth = inputWidth;
+        resize.outputWidth = outputWidth;
+        inputWidth = Math.round(inputWidth);
+        outputWidth = Math.round(outputWidth);
+        document.getElementById('input').style.width = inputWidth + 'px';
+        document.getElementById('h-resize').style.left = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + inputWidth) + 'px';
+        document.getElementById('options').style.right = (<?php echo isset($_GET['embed']) ? 0 : 26; ?> + outputWidth + 14) + 'px';
+        var vars = document.getElementById('vars');
+        if (vars) {
+            vars.style.width = inputWidth + 'px';
+        }
+        document.getElementById('output').style.width = outputWidth + 'px';
+    }
+    function setInputHeight(inputHeight, varsHeight) {
+        resize.inputHeight = inputHeight;
+        resize.varsHeight = varsHeight;
+        inputHeight = Math.round(inputHeight);
+        varsHeight = Math.round(varsHeight);
+        document.getElementById('input').style.height = inputHeight + 'px';
+        document.getElementById('vars').style.height = varsHeight + 'px';
+        document.getElementById('v-resize').style.bottom = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + varsHeight) + 'px';
+    }
+    window.onresize = function (e) {
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var diffWidth = width - resize.width;
+        var diffHeight = height - resize.height;
+        if (diffWidth && resize.inputWidth && resize.outputWidth) {
+            var deltaH = <?php echo isset($_GET['embed']) ? 14 : 54; ?>;
+            var ratioH = (width - deltaH) / (resize.width - deltaH);
+            setInputWidth(resize.inputWidth * ratioH, resize.outputWidth * ratioH);
+        }
+        if (diffHeight && resize.inputHeight && resize.varsHeight) {
+            var deltaV = <?php echo isset($_GET['embed']) ? 14 : 154; ?>;
+            var ratioV = (height - deltaV) / (resize.height - deltaV);
+            setInputHeight(resize.inputHeight * ratioV, resize.varsHeight * ratioV);
+        }
+        resize.width = width;
+        resize.height = height;
+    };
     window.onmousemove = function (e) {
         if (dragAndDrop.h) {
             document.getElementById('output').style.left = 'auto';
@@ -564,24 +610,17 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
                 inputWidth -= minWidth - outputWidth;
                 outputWidth = minWidth;
             }
-            document.getElementById('input').style.width = inputWidth + 'px';
-            document.getElementById('h-resize').style.left = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + inputWidth) + 'px';
-            document.getElementById('options').style.right = (<?php echo isset($_GET['embed']) ? 0 : 26; ?> + outputWidth + 14) + 'px';
-            var vars = document.getElementById('vars');
-            if (vars) {
-                vars.style.width = inputWidth + 'px';
-            }
-            document.getElementById('output').style.width = outputWidth + 'px';
+            setInputWidth(inputWidth, outputWidth);
         } else if (dragAndDrop.v) {
             var inputHeight = Math.max(minHeight, dragAndDrop.v.inputHeight + e.pageY - dragAndDrop.v.y);
-            var outputHeight = dragAndDrop.v.varsHeight - inputHeight + dragAndDrop.v.inputHeight;
-            if (outputHeight < minHeight) {
-                inputHeight -= minHeight - outputHeight;
-                outputHeight = minHeight;
+            var varsHeight = dragAndDrop.v.varsHeight - inputHeight + dragAndDrop.v.inputHeight;
+            if (varsHeight < minHeight) {
+                inputHeight -= minHeight - varsHeight;
+                varsHeight = minHeight;
             }
-            document.getElementById('input').style.height = inputHeight + 'px';
-            document.getElementById('vars').style.height = outputHeight + 'px';
+            setInputHeight(inputHeight, varsHeight);
         }
+        window.dispatchEvent(new Event('resize'));
     };
     window.onmouseup = function (e) {
         dragAndDrop = {};
