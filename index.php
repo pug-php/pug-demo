@@ -566,7 +566,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             }
             document.getElementById('input').style.width = inputWidth + 'px';
             document.getElementById('h-resize').style.left = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + inputWidth) + 'px';
-            document.getElementById('options').style.right = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + outputWidth + 14) + 'px';
+            document.getElementById('options').style.right = (<?php echo isset($_GET['embed']) ? 0 : 26; ?> + outputWidth + 14) + 'px';
             var vars = document.getElementById('vars');
             if (vars) {
                 vars.style.width = inputWidth + 'px';
