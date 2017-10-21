@@ -48,7 +48,7 @@ $vars = eval('return ' . $_POST['vars'] . ';');
 
 try {
     if (empty($_POST['compileOnly'])) {
-        echo $pug->render($_POST['pug'], isset($vars) ? $vars : array());
+        echo $pug->render($_POST['pug'], $vars ? $vars : array());
     } else {
         echo $pug->compile($_POST['pug']);
     }

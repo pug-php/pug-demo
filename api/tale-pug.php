@@ -23,6 +23,7 @@ $renderer = new Renderer(array(
 ));
 
 $vars = eval('return ' . $_POST['vars'] . ';');
+$vars = $vars ? $vars : array();
 
 try {
     if (empty($_POST['compileOnly'])) {
