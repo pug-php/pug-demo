@@ -1,6 +1,7 @@
 <?php
 $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
+$vResizeBottom = 13 - $varsHeight * 1.34;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +48,8 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
     sup {
         color: gray;
     }
+    #h-resize,
+    #v-resize,
     #input,
     #output,
     #preview,
@@ -54,6 +57,11 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
         position: absolute;
         bottom: 20px;
         top: 120px;
+    }
+    #input,
+    #output,
+    #preview,
+    #vars {
         border-radius: 2px;
         border: 1px solid <?php echo isset($_GET['border']) ? $_GET['border'] : '#232323'; ?>;
         box-sizing: border-box;
@@ -115,6 +123,20 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
     }
     #preview {
         display: none;
+        background: silver;
+    }
+    #h-resize {
+        left: calc(50% - 7px);
+        width: 14px;
+        cursor: col-resize;
+    }
+    #v-resize {
+        top: auto;
+        bottom: calc(<?php echo $varsHeight . '% ' . ($vResizeBottom < 0 ? '-' : '+') . ' ' . abs($vResizeBottom); ?>px);
+        left: 20px;
+        right: calc(50% + 7px);
+        height: 14px;
+        cursor: row-resize;
     }
     <?php if (isset($_GET['embed'])) { ?>
         html,
@@ -127,11 +149,24 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
             bottom: 0;
             right: calc(50% + 7px);
         }
+        #right-buttons a {
+            top: 0;
+            right: 0;
+        }
         #input {
             top: 0;
             height: calc(<?php echo 100 - $varsHeight; ?>% - 5px);
             left: 0;
             right: calc(50% + 7px);
+        }
+        #h-resize {
+            top: 0;
+            bottom: 0;
+        }
+        #v-resize {
+            top: calc(<?php echo 100 - $varsHeight; ?>% - 7px);
+            left: 0;
+            width: calc(50% - 7px);
         }
         #preview,
         #output {
@@ -150,6 +185,7 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
             right: calc(50% + 7px);
         }
         <?php if (isset($_GET['hide-vars'])) { ?>
+            #v-resize,
             #vars {
                 display: none;
             }
@@ -339,6 +375,8 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     &lt;/div>
   &lt;/body>
 &lt;/html><?php } ?></div>
+<div id="h-resize"></div>
+<div id="v-resize"></div>
 <div id="preview"></div>
 <div id="right-buttons">
     <a href="#" onclick="sources(event)" id="sources-button" style="display: none;">Sources</a>
@@ -420,7 +458,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(
             'pug=' + encodeURIComponent(input.getValue()) +
-            '&vars=' + encodeURIComponent(vars.getValue()) +
+            '&vars=' + encodeURIComponent(vars ? vars.getValue() : '[]') +
             '&engine=' + encodeURIComponent(engine) +
             '&version=' + encodeURIComponent(version) +
             options
@@ -430,7 +468,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     function exportEmbed() {
         var _engine = document.getElementById('engine').value || <?php echo json_encode($engine); ?>;
         var _input = encodeURIComponent(input.getValue());
-        var _vars = encodeURIComponent(vars.getValue());
+        var _vars = encodeURIComponent(vars ? vars.getValue() : '[]');
         var link = '/?embed' +
             '&theme=xcode'+
             '&border=silver' +
@@ -481,16 +519,74 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
     var input = editor("input", "ace/mode/jade");
 
-    var vars = editor("vars", {
-        path:"ace/mode/php",
-        inline: true
-    });
+    var vars = null;
+    if (document.getElementById('vars')) {
+        vars = editor("vars", {
+            path:"ace/mode/php",
+            inline: true
+        });
+    }
 
     var output = editor("output", "ace/mode/html", true);
 
     input.getSession().on('change', convertToPug);
-    vars.getSession().on('change', convertToPug);
-    
+    vars && vars.getSession().on('change', convertToPug);
+
+    var dragAndDrop = {v: null, h: null};
+    document.getElementById('h-resize').onmousedown = function (e) {
+        dragAndDrop.h = {
+            x: e.pageX,
+            inputWidth: document.getElementById('input').offsetWidth,
+            outputWidth: document.getElementById('output').offsetWidth
+        };
+        e.preventDefault();
+
+        return false;
+    };
+    document.getElementById('v-resize').onmousedown = function (e) {
+        dragAndDrop.v = {
+            y: e.pageY,
+            inputHeight: document.getElementById('input').offsetHeight,
+            varsHeight: document.getElementById('vars').offsetHeight
+        };
+        e.preventDefault();
+
+        return false;
+    };
+    var minWidth = 80;
+    var minHeight = 60;
+    window.onmousemove = function (e) {
+        if (dragAndDrop.h) {
+            document.getElementById('output').style.left = 'auto';
+            var inputWidth = Math.max(minWidth, dragAndDrop.h.inputWidth + e.pageX - dragAndDrop.h.x);
+            var outputWidth = dragAndDrop.h.outputWidth - inputWidth + dragAndDrop.h.inputWidth;
+            if (outputWidth < minWidth) {
+                inputWidth -= minWidth - outputWidth;
+                outputWidth = minWidth;
+            }
+            document.getElementById('input').style.width = inputWidth + 'px';
+            document.getElementById('h-resize').style.left = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + inputWidth) + 'px';
+            document.getElementById('options').style.right = (<?php echo isset($_GET['embed']) ? 0 : 20; ?> + outputWidth + 14) + 'px';
+            var vars = document.getElementById('vars');
+            if (vars) {
+                vars.style.width = inputWidth + 'px';
+            }
+            document.getElementById('output').style.width = outputWidth + 'px';
+        } else if (dragAndDrop.v) {
+            var inputHeight = Math.max(minHeight, dragAndDrop.v.inputHeight + e.pageY - dragAndDrop.v.y);
+            var outputHeight = dragAndDrop.v.varsHeight - inputHeight + dragAndDrop.v.inputHeight;
+            if (outputHeight < minHeight) {
+                inputHeight -= minHeight - outputHeight;
+                outputHeight = minHeight;
+            }
+            document.getElementById('input').style.height = inputHeight + 'px';
+            document.getElementById('vars').style.height = outputHeight + 'px';
+        }
+    };
+    window.onmouseup = function (e) {
+        dragAndDrop = {};
+    };
+
     <?php
     if (isset($_GET['embed'])) {
         echo 'convertToPug()';
