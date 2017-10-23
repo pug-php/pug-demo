@@ -125,7 +125,7 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
         display: none;
         color: gray;
     }
-    #preview pre {
+    #preview pre.line-numbers {
         background: gray;
     }
     #h-resize {
