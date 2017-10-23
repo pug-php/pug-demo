@@ -128,6 +128,9 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
     #preview pre.line-numbers {
         background: gray;
     }
+    #preview pre {
+        overflow: auto;
+    }
     #h-resize {
         left: calc(50% - 7px);
         width: 14px;
