@@ -393,6 +393,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-php.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
+    var lastRequest;
 
     function convertToPug(e) {
         var xhr;
@@ -417,8 +418,10 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
              }
         }
 
+        lastRequest = xhr;
+
         xhr.onreadystatechange = function () {
-            if (xhr.readyState < 4) {
+            if (xhr.readyState < 4 || xhr !== lastRequest) {
                 return;
             }
 
