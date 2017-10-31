@@ -397,6 +397,23 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 <script>
     var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
     var lastRequest;
+    var saveAs = '<?php echo urlencode($_GET['save_as']); ?>';
+    var lastInput = '';
+    var lastTime = 0;
+    localStorage || (localStorage = {});
+    localStorage.files || (localStorage.files = '{}');
+    
+    setInterval(function () {
+        var time = (new Date()).getTime();
+        var files = JSON.parse(localStorage.files);
+        Object.keys(files).forEach(function (file) {
+            var value = files[file];
+            if (value > lastTime && lastInput.indexOf(file) !== -1) {
+                convertToPug();
+                lastTime = (new Date()).getTime();
+            }
+        });
+    }, 200);
 
     function convertToPug(e) {
         var xhr;
@@ -464,14 +481,22 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             );
         }
 
+        if (saveAs) {
+            var files = JSON.parse(localStorage.files);
+            files[saveAs] = (new Date()).getTime();
+            localStorage.files = JSON.stringify(files);
+        }
+        
+        lastInput = input.getValue() + ''
+
         xhr.open('POST', '/api/' + engine + '.php', true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send(
-            'pug=' + encodeURIComponent(input.getValue()) +
+            'pug=' + encodeURIComponent(lastInput) +
             '&vars=' + encodeURIComponent(vars ? vars.getValue() : '[]') +
             '&engine=' + encodeURIComponent(engine) +
             '&version=' + encodeURIComponent(version) +
-            '&save_as=<?php echo urlencode($_GET['save_as']); ?>' +
+            '&save_as=' + saveAs +
             options
         );
     }
