@@ -19,6 +19,21 @@ if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST[
 
 require_once __DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php';
 
+session_start();
+
+class SessionLocator extends \Phug\Compiler\Locator\FileLocator {
+    public function locate($path, array $locations, array $extensions) {
+        if (mb_substr($path, 0, 5) === 'save:') {
+            return $path;
+        }
+        if (isset($_SESSION['save_' . $path])) {
+            return 'save:' . $path;
+        }
+
+        return parent::locate($path, $locations, $extensions);
+    }
+}
+
 $expressionLanguages = array(
   'php',
   'js'
@@ -42,15 +57,32 @@ $pug = new Pug(array(
     'pugjs'              => !empty($_POST['pugjs']),
     'restrictedScope'    => !empty($_POST['restrictedScope']),
     'singleQuote'        => !empty($_POST['singleQuote']),
+    'locator_class_name' => SessionLocator::class,
+    'get_file_contents'  => function ($path) {
+        if (mb_substr($path, 0, 5) === 'save:') {
+            $key = 'save_' . mb_substr($path, 5);
+            if (isset($_SESSION[$key])) {
+                return $_SESSION[$key];
+            }
+            
+            return $key;
+        }
+        
+        return file_get_contents($path);
+    },
 ));
 
 $vars = eval('return ' . $_POST['vars'] . ';');
 
+if (!empty($_POST['save_as'])) {
+    $_SESSION['save_' . $_POST['save_as']] = $_POST['pug'];
+}
+
 try {
     if (empty($_POST['compileOnly'])) {
-        echo $pug->render($_POST['pug'], $vars ? $vars : array());
+        echo $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
     } else {
-        echo $pug->compile($_POST['pug']);
+        echo $pug->compile($_POST['pug'], __DIR__ . '/../index.pug');
     }
 } catch (\Exception $e) {
     $message = trim($e->getMessage());

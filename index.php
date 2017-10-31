@@ -471,6 +471,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             '&vars=' + encodeURIComponent(vars ? vars.getValue() : '[]') +
             '&engine=' + encodeURIComponent(engine) +
             '&version=' + encodeURIComponent(version) +
+            '&save_as=<?php echo urlencode($_GET['save_as']); ?>' +
             options
         );
     }
