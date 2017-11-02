@@ -397,7 +397,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 <script>
     var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
     var lastRequest;
-    var saveAs = '<?php echo urlencode($_GET['save_as']); ?>';
+    var saveAs = <?php echo json_encode(urldecode($_GET['save_as'])); ?>;
     var lastInput = '';
     var lastTime = 0;
     localStorage || (localStorage = {});
@@ -407,10 +407,12 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         var time = (new Date()).getTime();
         var files = JSON.parse(localStorage.files);
         Object.keys(files).forEach(function (file) {
-            var value = files[file];
-            if (value > lastTime && lastInput.indexOf(file) !== -1) {
-                convertToPug();
-                lastTime = (new Date()).getTime();
+            if (file !== saveAs) {
+                var value = files[file];
+                if (value > lastTime && lastInput.indexOf(file) !== -1) {
+                    convertToPug();
+                    lastTime = (new Date()).getTime();
+                }
             }
         });
     }, 200);
@@ -496,7 +498,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             '&vars=' + encodeURIComponent(vars ? vars.getValue() : '[]') +
             '&engine=' + encodeURIComponent(engine) +
             '&version=' + encodeURIComponent(version) +
-            '&save_as=' + saveAs +
+            '&save_as=' + encodeURIComponent(saveAs) +
             options
         );
     }
