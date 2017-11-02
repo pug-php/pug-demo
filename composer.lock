@@ -627,16 +627,16 @@
         },
         {
             "name": "phug/parser",
-            "version": "0.5.6",
+            "version": "0.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/parser.git",
-                "reference": "ab7585f6ff953d7f6ab3e526ff905b835621ce17"
+                "reference": "0f1c5ab45ca009f4785ca19cf7c6da6bfa0de048"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/parser/zipball/ab7585f6ff953d7f6ab3e526ff905b835621ce17",
-                "reference": "ab7585f6ff953d7f6ab3e526ff905b835621ce17",
+                "url": "https://api.github.com/repos/phug-php/parser/zipball/0f1c5ab45ca009f4785ca19cf7c6da6bfa0de048",
+                "reference": "0f1c5ab45ca009f4785ca19cf7c6da6bfa0de048",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-01 13:40:45"
+            "time": "2017-11-02 14:04:39"
         },
         {
             "name": "phug/phug",
