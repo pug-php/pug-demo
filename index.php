@@ -145,6 +145,7 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
         cursor: row-resize;
     }
     <?php if (isset($_GET['hide-output'])) { ?>
+        #right-buttons,
         #output {
             display: none;
         }
