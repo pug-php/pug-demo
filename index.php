@@ -1,5 +1,6 @@
 <?php
 $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
+$inputLanguage = isset($_GET['language']) ? $_GET['language'] : 'jade';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
 $vResizeBottom = 13 - $varsHeight * 1.34;
 ?><!DOCTYPE html>
@@ -400,6 +401,9 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-jade.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-html.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-php.js" type="text/javascript" charset="utf-8"></script>
+<?php if (!in_array($inputLanguage, array('jade', 'pug', 'html', 'php', 'css', 'js', 'javascript'))) { ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-<?php echo $inputLanguage; ?>.js" type="text/javascript" charset="utf-8"></script>
+<?php } ?>
 <script>
     var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
     var lastRequest;
@@ -562,7 +566,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         convertToPug(e);
     }
 
-    var input = editor("input", "ace/mode/<?php echo isset($_GET['language']) ? $_GET['language'] : 'jade' ?>");
+    var input = editor("input", "ace/mode/<?php echo $inputLanguage; ?>");
 
     var vars = null;
     if (document.getElementById('vars')) {

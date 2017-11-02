@@ -4,9 +4,69 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e4bbec9507f5f23d0b2f98025b5ee13d",
-    "content-hash": "3fd8a51c86c688286d444001b5de7cc3",
+    "hash": "2acab8053d51e640e9e43c2fbb2295e4",
+    "content-hash": "6f220257515d7352de6bc78f81b8311a",
     "packages": [
+        {
+            "name": "cebe/markdown",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cebe/markdown.git",
+                "reference": "25b28bae8a6f185b5030673af77b32e1163d5c6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cebe/markdown/zipball/25b28bae8a6f185b5030673af77b32e1163d5c6e",
+                "reference": "25b28bae8a6f185b5030673af77b32e1163d5c6e",
+                "shasum": ""
+            },
+            "require": {
+                "lib-pcre": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "cebe/indent": "*",
+                "facebook/xhprof": "*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "bin": [
+                "bin/markdown"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "cebe\\markdown\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc",
+                    "homepage": "http://cebe.cc/",
+                    "role": "Creator"
+                }
+            ],
+            "description": "A super fast, highly extensible markdown parser for PHP",
+            "homepage": "https://github.com/cebe/markdown#readme",
+            "keywords": [
+                "extensible",
+                "fast",
+                "gfm",
+                "markdown",
+                "markdown-extra"
+            ],
+            "time": "2017-07-16 21:13:23"
+        },
         {
             "name": "js-phpize/js-phpize",
             "version": "1.11.2",
@@ -1076,6 +1136,50 @@
                 "template"
             ],
             "time": "2017-10-31 15:41:20"
+        },
+        {
+            "name": "pug-php/pug-filter-markdown",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pug-php/pug-filter-markdown.git",
+                "reference": "8fe5832db71d3e8adfa024d8205ea9eb78ff3ad2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pug-php/pug-filter-markdown/zipball/8fe5832db71d3e8adfa024d8205ea9eb78ff3ad2",
+                "reference": "8fe5832db71d3e8adfa024d8205ea9eb78ff3ad2",
+                "shasum": ""
+            },
+            "require": {
+                "cebe/markdown": "^1.1",
+                "pug-php/pug": "^2.0 || ^3.0@alpha"
+            },
+            "replace": {
+                "kylekatarnls/jade-filter-markdown": "self.version"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": ">=4.8 <6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pug": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Katarn",
+                    "email": "kylekatarnls@gmail.com"
+                }
+            ],
+            "description": "Markdown filter for Pug-php",
+            "time": "2017-10-03 11:17:08"
         },
         {
             "name": "symfony/polyfill-mbstring",

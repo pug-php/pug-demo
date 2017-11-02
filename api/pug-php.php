@@ -1,6 +1,5 @@
 <?php
 
-use NodejsPhpFallback\NodejsPhpFallback;
 use Pug\Pug;
 
 function exception_error_handler($severity, $message, $file, $line) {
@@ -17,6 +16,7 @@ if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST[
     exit;
 }
 
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php';
 
 session_start();
@@ -40,7 +40,7 @@ $expressionLanguages = array(
 );
 
 if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
-    NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
+    \NodejsPhpFallback\NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
 }
 
 $pug = new Pug(array(
@@ -70,6 +70,9 @@ $pug = new Pug(array(
         
         return file_get_contents($path);
     },
+    'filters' => array(
+        'markdown' => new \Pug\Filter\Markdown(),
+    ),
 ));
 
 $vars = eval('return ' . $_POST['vars'] . ';');
