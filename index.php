@@ -144,6 +144,11 @@ $vResizeBottom = 13 - $varsHeight * 1.34;
         height: 14px;
         cursor: row-resize;
     }
+    <?php if (isset($_GET['hide-output'])) { ?>
+        #output {
+            display: none;
+        }
+    <?php } ?>
     <?php if (isset($_GET['embed'])) { ?>
         html,
         body {
@@ -556,7 +561,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         convertToPug(e);
     }
 
-    var input = editor("input", "ace/mode/jade");
+    var input = editor("input", "ace/mode/<?php echo isset($_GET['language']) ? $_GET['language'] : 'jade' ?>");
 
     var vars = null;
     if (document.getElementById('vars')) {
