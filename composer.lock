@@ -194,16 +194,16 @@
         },
         {
             "name": "nodejs-php-fallback/nodejs-php-fallback",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kylekatarnls/nodejs-php-fallback.git",
-                "reference": "ee3954b3704484c41bb211fc425e6db0cd83e35b"
+                "reference": "3d034b21f16e814fd4d9b04a4f6472dc6337175a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kylekatarnls/nodejs-php-fallback/zipball/ee3954b3704484c41bb211fc425e6db0cd83e35b",
-                "reference": "ee3954b3704484c41bb211fc425e6db0cd83e35b",
+                "url": "https://api.github.com/repos/kylekatarnls/nodejs-php-fallback/zipball/3d034b21f16e814fd4d9b04a4f6472dc6337175a",
+                "reference": "3d034b21f16e814fd4d9b04a4f6472dc6337175a",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +235,7 @@
                 }
             ],
             "description": "Allow you to call node.js module or scripts throught PHP and call a fallback function if node.js is not available",
-            "time": "2017-10-30 15:12:37"
+            "time": "2017-11-03 08:55:02"
         },
         {
             "name": "phug/ast",
@@ -463,16 +463,16 @@
         },
         {
             "name": "phug/formatter",
-            "version": "0.5.30",
+            "version": "0.5.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/formatter.git",
-                "reference": "ba03f9faca7bb9ebbac2868b974accf226e90722"
+                "reference": "5251d7439df7390b5cac16c45776bad4611eb3d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/formatter/zipball/ba03f9faca7bb9ebbac2868b974accf226e90722",
-                "reference": "ba03f9faca7bb9ebbac2868b974accf226e90722",
+                "url": "https://api.github.com/repos/phug-php/formatter/zipball/5251d7439df7390b5cac16c45776bad4611eb3d6",
+                "reference": "5251d7439df7390b5cac16c45776bad4611eb3d6",
                 "shasum": ""
             },
             "require": {
@@ -520,7 +520,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-26 10:53:24"
+            "time": "2017-11-10 10:45:42"
         },
         {
             "name": "phug/js-transformer-filter",
@@ -970,21 +970,21 @@
         },
         {
             "name": "pug-php/pug",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/pug.git",
-                "reference": "506dbe03081bc381ba74f262d575a0668873c80d"
+                "reference": "07285df66959ff2a84b7e8e617565ae8c61f0778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/pug/zipball/506dbe03081bc381ba74f262d575a0668873c80d",
-                "reference": "506dbe03081bc381ba74f262d575a0668873c80d",
+                "url": "https://api.github.com/repos/pug-php/pug/zipball/07285df66959ff2a84b7e8e617565ae8c61f0778",
+                "reference": "07285df66959ff2a84b7e8e617565ae8c61f0778",
                 "shasum": ""
             },
             "require": {
                 "js-phpize/js-phpize-phug": "^1.1",
-                "nodejs-php-fallback/nodejs-php-fallback": "^1.2",
+                "nodejs-php-fallback/nodejs-php-fallback": "^1.3.1",
                 "php": ">=5.5.0",
                 "phug/js-transformer-filter": "^1.0",
                 "phug/phug": "^0.1.0"
@@ -1135,7 +1135,7 @@
                 "pug",
                 "template"
             ],
-            "time": "2017-10-31 15:41:20"
+            "time": "2017-11-03 09:33:13"
         },
         {
             "name": "pug-php/pug-filter-markdown",
