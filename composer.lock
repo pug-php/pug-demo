@@ -297,16 +297,16 @@
         },
         {
             "name": "phug/compiler",
-            "version": "0.5.10",
+            "version": "0.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/compiler.git",
-                "reference": "26223a0c1bff067803a6303f9640c72638de9c3f"
+                "reference": "572e7ae8e7931c7bc8d9b3aa5618afce52f716c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/compiler/zipball/26223a0c1bff067803a6303f9640c72638de9c3f",
-                "reference": "26223a0c1bff067803a6303f9640c72638de9c3f",
+                "url": "https://api.github.com/repos/phug-php/compiler/zipball/572e7ae8e7931c7bc8d9b3aa5618afce52f716c3",
+                "reference": "572e7ae8e7931c7bc8d9b3aa5618afce52f716c3",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-05 12:03:08"
+            "time": "2017-11-17 10:39:25"
         },
         {
             "name": "phug/dependency-injection",
@@ -463,16 +463,16 @@
         },
         {
             "name": "phug/formatter",
-            "version": "0.5.31",
+            "version": "0.5.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/formatter.git",
-                "reference": "5251d7439df7390b5cac16c45776bad4611eb3d6"
+                "reference": "83ea51999e2128a949425d429852b598caf92398"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/formatter/zipball/5251d7439df7390b5cac16c45776bad4611eb3d6",
-                "reference": "5251d7439df7390b5cac16c45776bad4611eb3d6",
+                "url": "https://api.github.com/repos/phug-php/formatter/zipball/83ea51999e2128a949425d429852b598caf92398",
+                "reference": "83ea51999e2128a949425d429852b598caf92398",
                 "shasum": ""
             },
             "require": {
@@ -520,7 +520,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-11-10 10:45:42"
+            "time": "2017-11-17 11:37:21"
         },
         {
             "name": "phug/js-transformer-filter",
