@@ -297,16 +297,16 @@
         },
         {
             "name": "phug/compiler",
-            "version": "0.5.11",
+            "version": "0.5.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/compiler.git",
-                "reference": "572e7ae8e7931c7bc8d9b3aa5618afce52f716c3"
+                "reference": "99705dc1beee4380c7573fdaaf8b26c18c49d81a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/compiler/zipball/572e7ae8e7931c7bc8d9b3aa5618afce52f716c3",
-                "reference": "572e7ae8e7931c7bc8d9b3aa5618afce52f716c3",
+                "url": "https://api.github.com/repos/phug-php/compiler/zipball/99705dc1beee4380c7573fdaaf8b26c18c49d81a",
+                "reference": "99705dc1beee4380c7573fdaaf8b26c18c49d81a",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-11-17 10:39:25"
+            "time": "2017-11-17 14:35:52"
         },
         {
             "name": "phug/dependency-injection",
@@ -567,16 +567,16 @@
         },
         {
             "name": "phug/lexer",
-            "version": "0.5.13",
+            "version": "0.5.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/lexer.git",
-                "reference": "fb6f1a723aff2b0f752de8d331aaba4337511cca"
+                "reference": "384bae71f0274a904364201ac926da031865e62d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/lexer/zipball/fb6f1a723aff2b0f752de8d331aaba4337511cca",
-                "reference": "fb6f1a723aff2b0f752de8d331aaba4337511cca",
+                "url": "https://api.github.com/repos/phug-php/lexer/zipball/384bae71f0274a904364201ac926da031865e62d",
+                "reference": "384bae71f0274a904364201ac926da031865e62d",
                 "shasum": ""
             },
             "require": {
@@ -623,7 +623,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-13 08:48:27"
+            "time": "2017-11-20 14:53:41"
         },
         {
             "name": "phug/parser",
@@ -799,16 +799,16 @@
         },
         {
             "name": "phug/renderer",
-            "version": "0.2.15",
+            "version": "0.2.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/renderer.git",
-                "reference": "39d0206b76713319e888711eb232d4f996af6d17"
+                "reference": "4b1a629f0655137c149b5e9cb661f3b9950ba213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/renderer/zipball/39d0206b76713319e888711eb232d4f996af6d17",
-                "reference": "39d0206b76713319e888711eb232d4f996af6d17",
+                "url": "https://api.github.com/repos/phug-php/renderer/zipball/4b1a629f0655137c149b5e9cb661f3b9950ba213",
+                "reference": "4b1a629f0655137c149b5e9cb661f3b9950ba213",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +857,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-12 10:10:15"
+            "time": "2017-11-20 15:00:55"
         },
         {
             "name": "phug/util",
