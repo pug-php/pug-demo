@@ -3,6 +3,9 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 $inputLanguage = isset($_GET['language']) ? $_GET['language'] : 'jade';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
 $vResizeBottom = 13 - $varsHeight * 1.34;
+
+header('Access-Control-Allow-Origin: *');
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
