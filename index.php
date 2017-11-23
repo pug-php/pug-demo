@@ -5,6 +5,7 @@ $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.
 $vResizeBottom = 13 - $varsHeight * 1.34;
 
 header('Access-Control-Allow-Origin: *');
+header('X-XSS-Protection: 0');
 
 ?><!DOCTYPE html>
 <html lang="en">
