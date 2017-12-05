@@ -69,16 +69,16 @@
         },
         {
             "name": "js-phpize/js-phpize",
-            "version": "1.11.2",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/js-phpize.git",
-                "reference": "857dcc97139eb70b3468618e58535434ec16f442"
+                "reference": "0e13b055ea31d9655f98287c5131af1037dd8a6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/857dcc97139eb70b3468618e58535434ec16f442",
-                "reference": "857dcc97139eb70b3468618e58535434ec16f442",
+                "url": "https://api.github.com/repos/pug-php/js-phpize/zipball/0e13b055ea31d9655f98287c5131af1037dd8a6a",
+                "reference": "0e13b055ea31d9655f98287c5131af1037dd8a6a",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "dev-master",
-                "phpunit/phpunit": ">=4.8 <6.0"
+                "phpunit/phpunit": ">=4.8.35 <6.0"
             },
             "type": "library",
             "autoload": {
@@ -106,7 +106,7 @@
                 }
             ],
             "description": "Convert js-like syntax to standalone PHP code.",
-            "time": "2017-09-27 15:52:38"
+            "time": "2017-12-05 09:22:31"
         },
         {
             "name": "js-phpize/js-phpize-phug",
@@ -297,16 +297,16 @@
         },
         {
             "name": "phug/compiler",
-            "version": "0.5.12",
+            "version": "0.5.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/compiler.git",
-                "reference": "99705dc1beee4380c7573fdaaf8b26c18c49d81a"
+                "reference": "b8a1990d261cde6ec54738958102a96130efc6c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/compiler/zipball/99705dc1beee4380c7573fdaaf8b26c18c49d81a",
-                "reference": "99705dc1beee4380c7573fdaaf8b26c18c49d81a",
+                "url": "https://api.github.com/repos/phug-php/compiler/zipball/b8a1990d261cde6ec54738958102a96130efc6c2",
+                "reference": "b8a1990d261cde6ec54738958102a96130efc6c2",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-11-17 14:35:52"
+            "time": "2017-11-28 09:35:37"
         },
         {
             "name": "phug/dependency-injection",
@@ -463,16 +463,16 @@
         },
         {
             "name": "phug/formatter",
-            "version": "0.5.32",
+            "version": "0.5.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/formatter.git",
-                "reference": "83ea51999e2128a949425d429852b598caf92398"
+                "reference": "bc09f13b9e256f6fb7a1a6a44bb4b544fc039ce5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/formatter/zipball/83ea51999e2128a949425d429852b598caf92398",
-                "reference": "83ea51999e2128a949425d429852b598caf92398",
+                "url": "https://api.github.com/repos/phug-php/formatter/zipball/bc09f13b9e256f6fb7a1a6a44bb4b544fc039ce5",
+                "reference": "bc09f13b9e256f6fb7a1a6a44bb4b544fc039ce5",
                 "shasum": ""
             },
             "require": {
@@ -520,25 +520,25 @@
                 "template",
                 "views"
             ],
-            "time": "2017-11-17 11:37:21"
+            "time": "2017-12-04 14:52:05"
         },
         {
             "name": "phug/js-transformer-filter",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/js-transformer-filter.git",
-                "reference": "923a97c3875eec713aa95f0b4458b8dec4ce5bca"
+                "reference": "8349c1853cf66986dd70c839fc32e1f82b097588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/js-transformer-filter/zipball/923a97c3875eec713aa95f0b4458b8dec4ce5bca",
-                "reference": "923a97c3875eec713aa95f0b4458b8dec4ce5bca",
+                "url": "https://api.github.com/repos/phug-php/js-transformer-filter/zipball/8349c1853cf66986dd70c839fc32e1f82b097588",
+                "reference": "8349c1853cf66986dd70c839fc32e1f82b097588",
                 "shasum": ""
             },
             "require": {
                 "js-transformer/js-transformer": "^1.0",
-                "phug/phug": "^0.1.8"
+                "phug/phug": "^0.1.8 || ^0.2.0"
             },
             "require-dev": {
                 "phug/dev-tool": "^0.1.11"
@@ -563,7 +563,7 @@
             "keywords": [
                 "js-transformer"
             ],
-            "time": "2017-10-30 21:35:08"
+            "time": "2017-12-05 13:59:45"
         },
         {
             "name": "phug/lexer",
@@ -688,29 +688,35 @@
         },
         {
             "name": "phug/phug",
-            "version": "0.1.8",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/phug.git",
-                "reference": "3ba9bb27978503b96aba2465e050eef7da310bd7"
+                "reference": "57970ea3f60ba50c6de3744ecb15b082df395de2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/phug/zipball/3ba9bb27978503b96aba2465e050eef7da310bd7",
-                "reference": "3ba9bb27978503b96aba2465e050eef7da310bd7",
+                "url": "https://api.github.com/repos/phug-php/phug/zipball/57970ea3f60ba50c6de3744ecb15b082df395de2",
+                "reference": "57970ea3f60ba50c6de3744ecb15b082df395de2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.0",
-                "phug/renderer": "^0.2.0"
+                "phug/renderer": "^0.3.2"
             },
             "require-dev": {
                 "phug/dev-tool": "^0.1.0"
             },
+            "bin": [
+                "phug"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "": "./src"
+                },
+                "psr-0": {
+                    "Phug": "./src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -739,7 +745,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-10-19 10:22:35"
+            "time": "2017-12-05 13:24:43"
         },
         {
             "name": "phug/reader",
@@ -799,16 +805,16 @@
         },
         {
             "name": "phug/renderer",
-            "version": "0.2.16",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/renderer.git",
-                "reference": "4b1a629f0655137c149b5e9cb661f3b9950ba213"
+                "reference": "afbf12c3598662b3b7c8395a0fab1370c86a0729"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/renderer/zipball/4b1a629f0655137c149b5e9cb661f3b9950ba213",
-                "reference": "4b1a629f0655137c149b5e9cb661f3b9950ba213",
+                "url": "https://api.github.com/repos/phug-php/renderer/zipball/afbf12c3598662b3b7c8395a0fab1370c86a0729",
+                "reference": "afbf12c3598662b3b7c8395a0fab1370c86a0729",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +863,7 @@
                 "template",
                 "views"
             ],
-            "time": "2017-11-20 15:00:55"
+            "time": "2017-12-04 16:50:30"
         },
         {
             "name": "phug/util",
@@ -970,16 +976,16 @@
         },
         {
             "name": "pug-php/pug",
-            "version": "3.1.1",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pug-php/pug.git",
-                "reference": "07285df66959ff2a84b7e8e617565ae8c61f0778"
+                "reference": "1e20a89fe1b352c82c60fb1bf69a3ad50b13daa6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pug-php/pug/zipball/07285df66959ff2a84b7e8e617565ae8c61f0778",
-                "reference": "07285df66959ff2a84b7e8e617565ae8c61f0778",
+                "url": "https://api.github.com/repos/pug-php/pug/zipball/1e20a89fe1b352c82c60fb1bf69a3ad50b13daa6",
+                "reference": "1e20a89fe1b352c82c60fb1bf69a3ad50b13daa6",
                 "shasum": ""
             },
             "require": {
@@ -987,15 +993,18 @@
                 "nodejs-php-fallback/nodejs-php-fallback": "^1.3.1",
                 "php": ">=5.5.0",
                 "phug/js-transformer-filter": "^1.0",
-                "phug/phug": "^0.1.0"
+                "phug/phug": "^0.2.0"
             },
             "replace": {
                 "kylekatarnls/jade-php": "self.version"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": ">=0.3",
-                "phpunit/phpunit": ">=4.8 <6.0"
+                "phpunit/phpunit": ">=4.8.35 <6.0"
             },
+            "bin": [
+                "pug"
+            ],
             "type": "library",
             "extra": {
                 "npm": {
@@ -1135,7 +1144,7 @@
                 "pug",
                 "template"
             ],
-            "time": "2017-11-03 09:33:13"
+            "time": "2017-12-05 14:29:10"
         },
         {
             "name": "pug-php/pug-filter-markdown",
