@@ -74,11 +74,12 @@ if (!empty($_POST['save_as'])) {
 }
 
 try {
+    $renderer = Phug::getRenderer($options);
     if (empty($_POST['compileOnly'])) {
-        $method = is_callable(['Phug', 'displayString']) ? 'displayString' : 'display';
-        Phug::getRenderer($options)->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
+        $method = is_callable([$renderer, 'displayString']) ? 'displayString' : 'display';
+        $renderer->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
     } else {
-        echo Phug::getRenderer($options)->getCompiler()->compile($_POST['pug'], __DIR__ . '/../index.pug');
+        echo $renderer->getCompiler()->compile($_POST['pug'], __DIR__ . '/../index.pug');
     }
 } catch (\Exception $e) {
     $message = trim($e->getMessage());
