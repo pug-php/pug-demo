@@ -83,7 +83,9 @@ if (!empty($_POST['save_as'])) {
 
 try {
     if (empty($_POST['compileOnly'])) {
-        echo $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
+        echo $pug instanceof \Jade\Jade
+            ? $pug->render($_POST['pug'], __DIR__ . '/../index.pug', $vars ? $vars : array())
+            : $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
     } else {
         echo $pug->compile($_POST['pug'], __DIR__ . '/../index.pug');
     }
