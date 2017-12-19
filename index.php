@@ -3,6 +3,17 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 $inputLanguage = isset($_GET['language']) ? $_GET['language'] : 'jade';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
 $vResizeBottom = 13 - $varsHeight * 1.34;
+$options = isset($_GET['options']) ? @json_decode($_GET['options']) : (object) [];
+
+function getOption($option, $default = null) {
+    global $options;
+
+    if (property_exists($options, $option)) {
+        return $options->$option;
+    }
+    
+    return $default;
+}
 
 header('Access-Control-Allow-Origin: *');
 header('X-XSS-Protection: 0');
@@ -273,47 +284,47 @@ header('X-XSS-Protection: 0');
             <?php } ?>
             <tr>
                 <td>allowMixedIndent</td>
-                <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('allowMixedIndent', true) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>allowMixinOverride</td>
-                <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('allowMixinOverride', true) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>classAttribute</td>
-                <td><input type="text" onkeyup="convertToPug(event)"></td>
+                <td><input type="text" value="<?php echo getOption('classAttribute', ''); ?>" onkeyup="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>expressionLanguage</td>
                 <td><select onchange="convertToPug(event)">
-                    <option value="auto" selected>auto</option>
-                    <option value="php">php</option>
-                    <option value="js">js</option>
+                    <option value="auto" <?php echo getOption('expressionLanguage', 'auto') === 'auto' ? 'selected' : ''; ?>>auto</option>
+                    <option value="php" <?php echo getOption('expressionLanguage', 'auto') === 'php' ? 'selected' : ''; ?>>php</option>
+                    <option value="js" <?php echo getOption('expressionLanguage', 'auto') === 'js' ? 'selected' : ''; ?>>js</option>
                 </select></td>
             </tr>
             <tr>
                 <td>prettyprint</td>
-                <td><input type="checkbox" checked onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('prettyprint', true) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>pugjs</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('pugjs', false) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>restrictedScope</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('restrictedScope', false) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td>singleQuote</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
+                <td><input type="checkbox" <?php echo getOption('singleQuote', false) ? 'checked' : ''; ?> onclick="convertToPug(event)"></td>
             </tr>
             <tr>
                 <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;">mode</td>
                 <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;"><select name="mode" onchange="convertToPug(event)">
-                    <option value="" selected>rendering</option>
-                    <option value="compile">compile</option>
-                    <option value="parse">parse</option>
-                    <option value="lex">lex</option>
+                    <option value="" <?php echo getOption('mode', '') === '' ? 'selected' : ''; ?>>rendering</option>
+                    <option value="compile" <?php echo getOption('mode', '') === 'compile' ? 'selected' : ''; ?>>compile</option>
+                    <option value="parse" <?php echo getOption('mode', '') === 'parse' ? 'selected' : ''; ?>>parse</option>
+                    <option value="lex" <?php echo getOption('mode', '') === 'lex' ? 'selected' : ''; ?>>lex</option>
                 </select></td>
             </tr>
         </table>
