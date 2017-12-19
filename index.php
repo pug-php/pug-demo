@@ -3,7 +3,8 @@ $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 $inputLanguage = isset($_GET['language']) ? $_GET['language'] : 'jade';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
 $vResizeBottom = 13 - $varsHeight * 1.34;
-$options = isset($_GET['options']) ? @json_decode($_GET['options']) : (object) [];
+$hasOptions = isset($_GET['options']);
+$options = $hasOptions ? @json_decode($_GET['options']) : (object) [];
 
 function getOption($option, $default = null) {
     global $options;
@@ -677,7 +678,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     };
 
     <?php
-    if (isset($_GET['embed'])) {
+    if (isset($_GET['embed']) || $hasOptions) {
         echo 'convertToPug()';
     }
     ?>
