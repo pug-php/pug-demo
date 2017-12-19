@@ -289,27 +289,7 @@ header('X-XSS-Protection: 0');
                     <option value="auto" selected>auto</option>
                     <option value="php">php</option>
                     <option value="js">js</option>
-                </select</td>
-            </tr>
-            <tr>
-                <td>indentChar</td>
-                <td><input type="text" value=" " onkeyup="convertToPug(event)"></td>
-            </tr>
-            <tr>
-                <td>indentSize</td>
-                <td><input type="number" value="2" onkeyup="convertToPug(event)" onclick="convertToPug(event)"></td>
-            </tr>
-            <tr>
-                <td>keepBaseName</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
-            </tr>
-            <tr>
-                <td>keepNullAttributes</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
-            </tr>
-            <tr>
-                <td>phpSingleLine</td>
-                <td><input type="checkbox" onclick="convertToPug(event)"></td>
+                </select></td>
             </tr>
             <tr>
                 <td>prettyprint</td>
@@ -328,8 +308,13 @@ header('X-XSS-Protection: 0');
                 <td><input type="checkbox" onclick="convertToPug(event)"></td>
             </tr>
             <tr>
-                <td style="border-top: 2px solid white;">compileOnly</td>
-                <td style="border-top: 2px solid white;"><input type="checkbox" onclick="convertToPug(event)" name="compileOnly"></td>
+                <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;">mode</td>
+                <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;"><select name="mode" onchange="convertToPug(event)">
+                    <option value="" selected>rendering</option>
+                    <option value="compile">compile</option>
+                    <option value="parse">parse</option>
+                    <option value="lex">lex</option>
+                </select></td>
             </tr>
         </table>
         <?php if (isset($_GET['export'])) { ?>
@@ -409,7 +394,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-<?php echo $inputLanguage; ?>.js" type="text/javascript" charset="utf-8"></script>
 <?php } ?>
 <script>
-    var compileOnlyInput = document.querySelector('input[name="compileOnly"]');
+    var modeInput = document.querySelector('select[name="mode"]');
     var lastRequest;
     var saveAs = <?php echo json_encode(urldecode($_GET['save_as'])); ?>;
     var lastInput = '';
@@ -467,8 +452,10 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
             if (xhr.readyState === 4) {
                 var session = output.getSession();
-                if (compileOnlyInput.checked) {
+                if (modeInput.value === 'compile') {
                   session.setMode("ace/mode/php");
+                } else if (modeInput.value) {
+                  session.setMode("ace/mode/text");
                 } else {
                   session.setMode("ace/mode/html");
                 }

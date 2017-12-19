@@ -43,7 +43,10 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
     \NodejsPhpFallback\NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
 }
 
+$renderingMode = empty($_POST['mode']);
+
 $pug = new Pug(array(
+    'debug'              => $renderingMode,
     'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
     'allowMixinOverride' => !empty($_POST['allowMixinOverride']),
     'classAttribute'     => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
@@ -82,8 +85,14 @@ if (!empty($_POST['save_as'])) {
 }
 
 try {
-    if (empty($_POST['compileOnly'])) {
-        echo $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
+    if ($renderingMode) {
+        echo $pug instanceof \Jade\Jade
+            ? $pug->render($_POST['pug'], __DIR__ . '/../index.pug', $vars ? $vars : array())
+            : $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'parse') {
+        echo $pug->getCompiler()->getParser()->dump($_POST['pug'], __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'lex') {
+        echo $pug->getCompiler()->getParser()->getLexer()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } else {
         echo $pug->compile($_POST['pug'], __DIR__ . '/../index.pug');
     }

@@ -26,7 +26,7 @@ $vars = eval('return ' . $_POST['vars'] . ';');
 $vars = $vars ? $vars : array();
 
 try {
-    if (empty($_POST['compileOnly'])) {
+    if (empty($_POST['mode'])) {
         extract($vars);
         eval('?>'.$renderer->getCompiler()->compile($_POST['pug']));
     } else {

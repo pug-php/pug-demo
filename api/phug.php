@@ -43,7 +43,10 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
     \NodejsPhpFallback\NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
 }
 
+$renderingMode = empty($_POST['mode']);
+
 $options = array(
+    'debug'         => $renderingMode,
     'lexer_options' => array(
         'allow_mixed_indent' => !empty($_POST['allowMixedIndent']),
     ),
@@ -75,9 +78,13 @@ if (!empty($_POST['save_as'])) {
 
 try {
     $renderer = Phug::getRenderer($options);
-    if (empty($_POST['compileOnly'])) {
+    if ($renderingMode) {
         $method = is_callable([$renderer, 'displayString']) ? 'displayString' : 'display';
         $renderer->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'parse') {
+        echo $renderer->getCompiler()->getParser()->dump($_POST['pug'], __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'lex') {
+        echo $renderer->getCompiler()->getParser()->getLexer()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } else {
         echo $renderer->getCompiler()->compile($_POST['pug'], __DIR__ . '/../index.pug');
     }
