@@ -89,6 +89,8 @@ try {
         echo $pug instanceof \Jade\Jade
             ? $pug->render($_POST['pug'], __DIR__ . '/../index.pug', $vars ? $vars : array())
             : $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'compile') {
+        echo $pug->getCompiler()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'parse') {
         echo $pug->getCompiler()->getParser()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'lex') {

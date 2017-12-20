@@ -322,7 +322,8 @@ header('X-XSS-Protection: 0');
             <tr>
                 <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;">mode</td>
                 <td style="border-top: 1px solid rgba(255, 255, 255, 0.5); margin-top: 2px; padding-top: 5px;"><select name="mode" onchange="convertToPug(event)">
-                    <option value="" <?php echo getOption('mode', '') === '' ? 'selected' : ''; ?>>rendering</option>
+                    <option value="" <?php echo getOption('mode', '') === '' ? 'selected' : ''; ?>>render</option>
+                    <option value="format" <?php echo getOption('mode', '') === 'format' ? 'selected' : ''; ?>>format</option>
                     <option value="compile" <?php echo getOption('mode', '') === 'compile' ? 'selected' : ''; ?>>compile</option>
                     <option value="parse" <?php echo getOption('mode', '') === 'parse' ? 'selected' : ''; ?>>parse</option>
                     <option value="lex" <?php echo getOption('mode', '') === 'lex' ? 'selected' : ''; ?>>lex</option>
@@ -464,7 +465,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
             if (xhr.readyState === 4) {
                 var session = output.getSession();
-                if (modeInput.value === 'compile') {
+                if (modeInput.value === 'format') {
                   session.setMode("ace/mode/php");
                 } else if (modeInput.value) {
                   session.setMode("ace/mode/text");

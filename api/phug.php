@@ -81,6 +81,8 @@ try {
     if ($renderingMode) {
         $method = is_callable([$renderer, 'displayString']) ? 'displayString' : 'display';
         $renderer->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
+    } elseif ($_POST['mode'] === 'compile') {
+        echo $renderer->getCompiler()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'parse') {
         echo $renderer->getCompiler()->getParser()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'lex') {
