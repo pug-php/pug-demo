@@ -44,6 +44,7 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
 }
 
 $renderingMode = empty($_POST['mode']);
+$pugjs = !empty($_POST['pugjs']);
 
 $pug = new Pug(array(
     'debug'              => $renderingMode,
@@ -57,7 +58,7 @@ $pug = new Pug(array(
     'keepNullAttributes' => !empty($_POST['keepNullAttributes']),
     'phpSingleLine'      => !empty($_POST['phpSingleLine']),
     'prettyprint'        => !empty($_POST['prettyprint']),
-    'pugjs'              => !empty($_POST['pugjs']),
+    'pugjs'              => $pugjs,
     'restrictedScope'    => !empty($_POST['restrictedScope']),
     'singleQuote'        => !empty($_POST['singleQuote']),
     'locator_class_name' => SessionLocator::class,
@@ -85,7 +86,11 @@ if (!empty($_POST['save_as'])) {
 }
 
 try {
-    if ($renderingMode) {
+    if ($pugjs) {
+        $html = $pug->render($_POST['pug'], $vars ? $vars : array());
+
+        echo substr($html, 0, 1) === "\n" ? substr($html, 1) : $html;
+    } elseif ($renderingMode) {
         echo $pug instanceof \Jade\Jade
             ? $pug->render($_POST['pug'], __DIR__ . '/../index.pug', $vars ? $vars : array())
             : $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
