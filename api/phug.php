@@ -52,7 +52,7 @@ $options = array(
     ),
     'locator_class_name' => SessionLocator::class,
     'class_attribute'    => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
-    'pretty'             => empty($_POST['prettyprint']) ? false : str_repeat(str_replace('\\t', "\t", $_POST['indentChar']), intval($_POST['indentSize'])),
+    'pretty'             => !empty($_POST['prettyprint']),
     'get_file_contents'  => function ($path) {
         if (mb_substr($path, 0, 5) === 'save:') {
             $key = 'save_' . mb_substr($path, 5);
