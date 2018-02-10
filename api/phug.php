@@ -46,8 +46,8 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
 $renderingMode = empty($_POST['mode']);
 
 $options = array(
-    'debug'         => $renderingMode,
-    'lexer_options' => array(
+    'debug'              => $renderingMode,
+    'lexer_options'      => array(
         'allow_mixed_indent' => !empty($_POST['allowMixedIndent']),
     ),
     'locator_class_name' => SessionLocator::class,
@@ -65,7 +65,7 @@ $options = array(
         
         return file_get_contents($path);
     },
-    'filters' => array(
+    'filters'            => array(
         'markdown' => new \Pug\Filter\Markdown(),
     ),
 );
@@ -79,7 +79,7 @@ if (!empty($_POST['save_as'])) {
 try {
     $renderer = Phug::getRenderer($options);
     if ($renderingMode) {
-        $method = is_callable([$renderer, 'displayString']) ? 'displayString' : 'display';
+        $method = method_exists($renderer, 'displayString') ? 'displayString' : 'display';
         $renderer->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'compile') {
         echo $renderer->getCompiler()->dump($_POST['pug'], __DIR__ . '/../index.pug');
