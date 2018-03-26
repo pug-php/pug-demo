@@ -406,7 +406,9 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-<?php echo $inputLanguage; ?>.js" type="text/javascript" charset="utf-8"></script>
 <?php } ?>
 <script>
-    document.domain = 'phug-lang.com';
+    if (/phug-lang\.com$/.test(location.host)) {
+        document.domain = 'phug-lang.com';
+    }
     var modeInput = document.querySelector('select[name="mode"]');
     var lastRequest;
     var saveAs = <?php echo json_encode(urldecode($_GET['save_as'])); ?>;
