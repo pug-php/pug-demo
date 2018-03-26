@@ -16,6 +16,7 @@ if (!file_exists(__DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST[
     exit;
 }
 
+include_once __DIR__ . '/../allow-csrf.php';
 require_once __DIR__ . '/../var/engines/' . $_POST['engine'] . '/' . $_POST['version'] . '/vendor/autoload.php';
 
 $renderer = new Renderer(array(

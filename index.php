@@ -16,8 +16,7 @@ function getOption($option, $default = null) {
     return $default;
 }
 
-header('Access-Control-Allow-Origin: *');
-header('X-XSS-Protection: 0');
+include_once __DIR__ . '/allow-csrf.php';
 
 ?><!DOCTYPE html>
 <html lang="en">
