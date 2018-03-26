@@ -406,6 +406,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/mode-<?php echo $inputLanguage; ?>.js" type="text/javascript" charset="utf-8"></script>
 <?php } ?>
 <script>
+    document.domain = 'phug-lang.com';
     var modeInput = document.querySelector('select[name="mode"]');
     var lastRequest;
     var saveAs = <?php echo json_encode(urldecode($_GET['save_as'])); ?>;
@@ -685,7 +686,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
 
     var _paq = _paq || [];
-    _paq.push(["setDomains", ["*.pug-php-demo-kylekatarn.c9users.io","*.jade-filters.selfbuild.fr","*.pug-filters.selfbuild.fr"]]);
+    _paq.push(['setDomains', ['pug-demo.herokuapp.com', 'pug-php-demo-kylekatarn.c9users.io', 'jade-filters.selfbuild.fr', 'pug-filters.selfbuild.fr', 'phug-lang.com', '*.phug-lang.com']]);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
