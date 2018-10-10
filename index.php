@@ -438,11 +438,11 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             xhr = new XMLHttpRequest();
         } else {
             var versions = [
-                "MSXML2.XmlHttp.5.0",
-                "MSXML2.XmlHttp.4.0",
-                "MSXML2.XmlHttp.3.0",
-                "MSXML2.XmlHttp.2.0",
-                "Microsoft.XmlHttp"
+                'MSXML2.XmlHttp.5.0',
+                'MSXML2.XmlHttp.4.0',
+                'MSXML2.XmlHttp.3.0',
+                'MSXML2.XmlHttp.2.0',
+                'Microsoft.XmlHttp'
             ];
             for (var i = 0, len = versions.length; i < len; i++) {
                 try {
@@ -468,11 +468,11 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
             if (xhr.readyState === 4) {
                 var session = output.getSession();
                 if (modeInput.value === 'format') {
-                  session.setMode("ace/mode/php");
+                  session.setMode('ace/mode/php');
                 } else if (modeInput.value) {
-                  session.setMode("ace/mode/text");
+                  session.setMode('ace/mode/text');
                 } else {
-                  session.setMode("ace/mode/html");
+                  session.setMode('ace/mode/html');
                 }
                 output.setValue(xhr.responseText, 1);
                 document.getElementById('preview').innerHTML = xhr.responseText;
@@ -487,12 +487,12 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
         var options = '';
         var children = document.querySelectorAll('#options tr');
-        for (var i = 0; i < children.length; i++) {
-            var name = children[i].querySelector('td').innerHTML;
+        for (var index = 0; i < children.length; index++) {
+            var name = children[index].querySelector('td').innerHTML;
             if (~['engine', 'version'].indexOf(name)) {
                 continue;
             }
-            var field = children[i].querySelector('input, select');
+            var field = children[index].querySelector('input, select');
             options += '&' + name + '=' + (field.type === 'checkbox'
                 ? (field.checked ? '1' : '')
                 : field.value
@@ -572,17 +572,17 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
         convertToPug(e);
     }
 
-    var input = editor("input", "ace/mode/<?php echo $inputLanguage; ?>");
+    var input = editor('input', 'ace/mode/<?php echo $inputLanguage; ?>');
 
     var vars = null;
     if (document.getElementById('vars')) {
-        vars = editor("vars", {
-            path:"ace/mode/php",
+        vars = editor('vars', {
+            path: 'ace/mode/php',
             inline: true
         });
     }
 
-    var output = editor("output", "ace/mode/html", true);
+    var output = editor('output', 'ace/mode/html', true);
 
     input.getSession().on('change', convertToPug);
     vars && vars.getSession().on('change', convertToPug);

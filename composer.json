@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=7.1",
         "pug-php/pug": ">=1.12",
         "ext-mbstring": "*",
         "pug-php/pug-filter-markdown": "^1.2"

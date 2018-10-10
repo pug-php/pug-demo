@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f220257515d7352de6bc78f81b8311a",
+    "content-hash": "4d1455b4e8887321568d3b7c4f89675e",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -415,16 +415,16 @@
         },
         {
             "name": "phug/event",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/event.git",
-                "reference": "8d78b07913d4aeffc6480dfd534fc5fed7adaf4e"
+                "reference": "dd4eab5b385428ddae45aa980359911fcec3d9d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/event/zipball/8d78b07913d4aeffc6480dfd534fc5fed7adaf4e",
-                "reference": "8d78b07913d4aeffc6480dfd534fc5fed7adaf4e",
+                "url": "https://api.github.com/repos/phug-php/event/zipball/dd4eab5b385428ddae45aa980359911fcec3d9d4",
+                "reference": "dd4eab5b385428ddae45aa980359911fcec3d9d4",
                 "shasum": ""
             },
             "require": {
@@ -454,12 +454,13 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
+            "description": "Phug events manager (compatible with PSR-14)",
             "homepage": "http://phug-lang.com",
             "keywords": [
                 "event",
                 "phug"
             ],
-            "time": "2018-02-19T14:06:44+00:00"
+            "time": "2018-07-03T15:20:30+00:00"
         },
         {
             "name": "phug/formatter",
@@ -568,16 +569,16 @@
         },
         {
             "name": "phug/lexer",
-            "version": "0.5.21",
+            "version": "0.5.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/lexer.git",
-                "reference": "fa25ce51d9229965267f29ec73ed0f726d46f65b"
+                "reference": "c9da2be310dab10747070243b3be3ab2e66623df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/lexer/zipball/fa25ce51d9229965267f29ec73ed0f726d46f65b",
-                "reference": "fa25ce51d9229965267f29ec73ed0f726d46f65b",
+                "url": "https://api.github.com/repos/phug-php/lexer/zipball/c9da2be310dab10747070243b3be3ab2e66623df",
+                "reference": "c9da2be310dab10747070243b3be3ab2e66623df",
                 "shasum": ""
             },
             "require": {
@@ -609,6 +610,7 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
+            "description": "Pug (ex-Jade) lexer for PHP, HTML template engine structured by indentation",
             "homepage": "http://phug-lang.com",
             "keywords": [
                 "dialect",
@@ -624,7 +626,7 @@
                 "template",
                 "views"
             ],
-            "time": "2018-02-14T14:49:13+00:00"
+            "time": "2018-08-17T13:39:39+00:00"
         },
         {
             "name": "phug/parser",
@@ -806,16 +808,16 @@
         },
         {
             "name": "phug/renderer",
-            "version": "0.4.3",
+            "version": "0.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/renderer.git",
-                "reference": "f33b7d0deadfe7f3e7e208f6c2ca5f2390d26388"
+                "reference": "e8fbc1890d4dfc92770807f25fcb0e75188fe33a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/renderer/zipball/f33b7d0deadfe7f3e7e208f6c2ca5f2390d26388",
-                "reference": "f33b7d0deadfe7f3e7e208f6c2ca5f2390d26388",
+                "url": "https://api.github.com/repos/phug-php/renderer/zipball/e8fbc1890d4dfc92770807f25fcb0e75188fe33a",
+                "reference": "e8fbc1890d4dfc92770807f25fcb0e75188fe33a",
                 "shasum": ""
             },
             "require": {
@@ -850,6 +852,7 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
+            "description": "Pug (ex-Jade) renderer for PHP, HTML template engine structured by indentation",
             "homepage": "http://phug-lang.com",
             "keywords": [
                 "compiler",
@@ -865,7 +868,7 @@
                 "template",
                 "views"
             ],
-            "time": "2018-04-06T12:51:48+00:00"
+            "time": "2018-07-05T13:44:16+00:00"
         },
         {
             "name": "phug/util",
@@ -1196,16 +1199,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
                 "shasum": ""
             },
             "require": {
@@ -1217,7 +1220,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1251,20 +1254,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-04-26T10:06:28+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "a4576e282d782ad82397f3e4ec1df8e0f0cafb46"
+                "reference": "95c50420b0baed23852452a7f0c7b527303ed5ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/a4576e282d782ad82397f3e4ec1df8e0f0cafb46",
-                "reference": "a4576e282d782ad82397f3e4ec1df8e0f0cafb46",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/95c50420b0baed23852452a7f0c7b527303ed5ae",
+                "reference": "95c50420b0baed23852452a7f0c7b527303ed5ae",
                 "shasum": ""
             },
             "require": {
@@ -1273,7 +1276,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1306,20 +1309,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-04-26T10:06:28+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v4.1.0",
+            "version": "v4.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "bc88ad53e825ebacc7b190bbd360781fce381c64"
+                "reference": "60319b45653580b0cdacca499344577d87732f16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/bc88ad53e825ebacc7b190bbd360781fce381c64",
-                "reference": "bc88ad53e825ebacc7b190bbd360781fce381c64",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/60319b45653580b0cdacca499344577d87732f16",
+                "reference": "60319b45653580b0cdacca499344577d87732f16",
                 "shasum": ""
             },
             "require": {
@@ -1381,7 +1384,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2018-04-29T07:56:09+00:00"
+            "time": "2018-10-02T16:36:10+00:00"
         }
     ],
     "packages-dev": [],
@@ -1391,7 +1394,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.3",
+        "php": ">=7.1",
         "ext-mbstring": "*"
     },
     "platform-dev": []
