@@ -487,7 +487,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
 
         var options = '';
         var children = document.querySelectorAll('#options tr');
-        for (var index = 0; i < children.length; index++) {
+        for (var index = 0; index < children.length; index++) {
             var name = children[index].querySelector('td').innerHTML;
             if (~['engine', 'version'].indexOf(name)) {
                 continue;
