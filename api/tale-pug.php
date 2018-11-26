@@ -14,10 +14,10 @@ $renderer = new Renderer(array(
     'pretty' => !empty($_POST['prettyprint']),
 ));
 
-$vars = eval('return ' . $_POST['vars'] . ';');
-$vars = $vars ? $vars : array();
-
 try {
+    $vars = eval('return ' . $_POST['vars'] . ';');
+    $vars = $vars ? $vars : array();
+
     if (empty($_POST['mode'])) {
         extract($vars);
         eval('?>'.$renderer->getCompiler()->compile($_POST['pug']));

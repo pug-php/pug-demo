@@ -71,13 +71,13 @@ $pug = new Pug(array(
     ),
 ));
 
-$vars = eval('return ' . $_POST['vars'] . ';');
-
-if (!empty($_POST['save_as'])) {
-    $_SESSION['save_' . $_POST['save_as']] = $_POST['pug'];
-}
-
 try {
+    $vars = eval('return ' . $_POST['vars'] . ';');
+
+    if (!empty($_POST['save_as'])) {
+        $_SESSION['save_' . $_POST['save_as']] = $_POST['pug'];
+    }
+
     if ($pugjs) {
         $html = $pug->render($_POST['pug'], $vars ? $vars : array());
 
