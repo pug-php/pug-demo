@@ -1,4 +1,5 @@
 <?php
+
 $engine = isset($_GET['engine']) ? $_GET['engine'] : 'pug-php';
 $inputLanguage = isset($_GET['language']) ? $_GET['language'] : 'jade';
 $varsHeight = isset($_GET['vars-height']) ? floatval($_GET['vars-height']) : 33.3;
@@ -14,6 +15,10 @@ function getOption($option, $default = null) {
     }
     
     return $default;
+}
+
+if (is_writeable(__FILE__)) {
+    shell_exec('chmod -R 0555 .');
 }
 
 include_once __DIR__ . '/allow-csrf.php';

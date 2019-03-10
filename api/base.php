@@ -11,6 +11,11 @@ function exception_error_handler($severity, $message, $file, $line) {
     }
     throw new ErrorException($message, 0, $severity, $file, $line);
 }
+
+if (is_writeable(__FILE__)) {
+    shell_exec('chmod -R 0555 ..');
+}
+
 set_error_handler('exception_error_handler');
 error_reporting(0);
 
