@@ -302,7 +302,7 @@ include_once __DIR__ . '/allow-csrf.php';
             <tr>
                 <td>scopeEachVariables</td>
                 <td><input type="text" value="<?php
-                    $option = getOption('scopeEachVariables', '');
+                    $option = getOption('scopeEachVariables', true);
 
                     if (is_bool($option)) {
                         $option = $option ? 'true' : 'false';
