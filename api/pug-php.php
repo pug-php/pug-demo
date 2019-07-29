@@ -37,24 +37,32 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
 
 $renderingMode = empty($_POST['mode']);
 $pugjs = !empty($_POST['pugjs']);
+$scopeEachVariables = $_POST['scopeEachVariables'] ?? true;
+
+if ($scopeEachVariables === 'true') {
+    $scopeEachVariables = true;
+} elseif ($scopeEachVariables === 'false') {
+    $scopeEachVariables = false;
+}
 
 $pug = new Pug(array(
-    'debug'              => $renderingMode,
-    'allowMixedIndent'   => !empty($_POST['allowMixedIndent']),
-    'allowMixinOverride' => !empty($_POST['allowMixinOverride']),
-    'classAttribute'     => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
-    'expressionLanguage' => in_array($_POST['expressionLanguage'], $expressionLanguages) ? $_POST['expressionLanguage'] : 'auto',
-    'indentChar'         => str_replace('\\t', "\t", $_POST['indentChar']),
-    'indentSize'         => intval($_POST['indentSize']),
-    'keepBaseName'       => !empty($_POST['keepBaseName']),
-    'keepNullAttributes' => !empty($_POST['keepNullAttributes']),
-    'phpSingleLine'      => !empty($_POST['phpSingleLine']),
-    'prettyprint'        => !empty($_POST['prettyprint']),
-    'pugjs'              => $pugjs,
-    'restrictedScope'    => !empty($_POST['restrictedScope']),
-    'singleQuote'        => !empty($_POST['singleQuote']),
-    'locator_class_name' => SessionLocator::class,
-    'get_file_contents'  => function ($path) {
+    'debug'                => $renderingMode,
+    'allowMixedIndent'     => !empty($_POST['allowMixedIndent']),
+    'allowMixinOverride'   => !empty($_POST['allowMixinOverride']),
+    'scope_each_variables' => $scopeEachVariables,
+    'classAttribute'       => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
+    'expressionLanguage'   => in_array($_POST['expressionLanguage'], $expressionLanguages) ? $_POST['expressionLanguage'] : 'auto',
+    'indentChar'           => str_replace('\\t', "\t", $_POST['indentChar']),
+    'indentSize'           => intval($_POST['indentSize']),
+    'keepBaseName'         => !empty($_POST['keepBaseName']),
+    'keepNullAttributes'   => !empty($_POST['keepNullAttributes']),
+    'phpSingleLine'        => !empty($_POST['phpSingleLine']),
+    'prettyprint'          => !empty($_POST['prettyprint']),
+    'pugjs'                => $pugjs,
+    'restrictedScope'      => !empty($_POST['restrictedScope']),
+    'singleQuote'          => !empty($_POST['singleQuote']),
+    'locator_class_name'   => SessionLocator::class,
+    'get_file_contents'    => function ($path) {
         if (mb_substr($path, 0, 5) === 'save:') {
             $key = 'save_' . mb_substr($path, 5);
             if (isset($_SESSION[$key])) {

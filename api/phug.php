@@ -36,16 +36,24 @@ if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
 }
 
 $renderingMode = empty($_POST['mode']);
+$scopeEachVariables = $_POST['scopeEachVariables'] ?? true;
+
+if ($scopeEachVariables === 'true') {
+    $scopeEachVariables = true;
+} elseif ($scopeEachVariables === 'false') {
+    $scopeEachVariables = false;
+}
 
 $options = array(
-    'debug'              => $renderingMode,
-    'lexer_options'      => array(
+    'debug'                => $renderingMode,
+    'lexer_options'        => array(
         'allow_mixed_indent' => !empty($_POST['allowMixedIndent']),
     ),
-    'locator_class_name' => SessionLocator::class,
-    'class_attribute'    => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
-    'pretty'             => !empty($_POST['prettyprint']),
-    'get_file_contents'  => function ($path) {
+    'locator_class_name'   => SessionLocator::class,
+    'scope_each_variables' => $scopeEachVariables,
+    'class_attribute'      => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
+    'pretty'               => !empty($_POST['prettyprint']),
+    'get_file_contents'    => function ($path) {
         if (mb_substr($path, 0, 5) === 'save:') {
             $key = 'save_' . mb_substr($path, 5);
             if (isset($_SESSION[$key])) {
@@ -57,7 +65,7 @@ $options = array(
         
         return file_get_contents($path);
     },
-    'filters'            => array(
+    'filters'              => array(
         'markdown' => new \Pug\Filter\Markdown(),
     ),
 );

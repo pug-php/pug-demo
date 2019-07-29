@@ -300,6 +300,18 @@ include_once __DIR__ . '/allow-csrf.php';
                 <td><input type="text" value="<?php echo getOption('classAttribute', ''); ?>" onkeyup="convertToPug(event)"></td>
             </tr>
             <tr>
+                <td>scopeEachVariables</td>
+                <td><input type="text" value="<?php
+                    $option = getOption('scopeEachVariables', '');
+
+                    if (is_bool($option)) {
+                        $option = $option ? 'true' : 'false';
+                    }
+
+                    echo $option;
+                    ?>" onkeyup="convertToPug(event)"></td>
+            </tr>
+            <tr>
                 <td>expressionLanguage</td>
                 <td><select onchange="convertToPug(event)">
                     <option value="auto" <?php echo getOption('expressionLanguage', 'auto') === 'auto' ? 'selected' : ''; ?>>auto</option>
