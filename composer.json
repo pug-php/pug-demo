@@ -11,7 +11,7 @@
     "config": {
         "process-timout": 10800
     },
-    "extra":  {
-        "build": "2019-12-12 23:08:00"
+    "extra": {
+        "build": "2020-02-17 14:39:00"
     }
 }
