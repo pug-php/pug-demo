@@ -26,10 +26,10 @@ class SessionLocator extends \Phug\Compiler\Locator\FileLocator {
     }
 }
 
-$expressionLanguages = array(
+$expressionLanguages = [
   'php',
   'js'
-);
+];
 
 if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
     \NodejsPhpFallback\NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
@@ -45,7 +45,7 @@ if ($scopeEachVariables === 'true') {
     $scopeEachVariables = false;
 }
 
-$pug = new Pug(array(
+$pug = new Pug([
     'debug'                => $renderingMode,
     'allowMixedIndent'     => !empty($_POST['allowMixedIndent']),
     'allowMixinOverride'   => !empty($_POST['allowMixinOverride']),
@@ -74,10 +74,10 @@ $pug = new Pug(array(
         
         return file_get_contents($path);
     },
-    'filters' => array(
+    'filters' => [
         'markdown' => new \Pug\Filter\Markdown(),
-    ),
-));
+    ],
+]);
 
 try {
     $vars = eval('return ' . $_POST['vars'] . ';');
@@ -87,13 +87,13 @@ try {
     }
 
     if ($pugjs) {
-        $html = $pug->render($_POST['pug'], $vars ? $vars : array());
+        $html = $pug->render($_POST['pug'], $vars ?: []);
 
         echo substr($html, 0, 1) === "\n" ? substr($html, 1) : $html;
     } elseif ($renderingMode) {
         echo $pug instanceof \Jade\Jade
             ? $pug->render($_POST['pug'], __DIR__ . '/../index.pug', $vars ? $vars : array())
-            : $pug->render($_POST['pug'], $vars ? $vars : array(), __DIR__ . '/../index.pug');
+            : $pug->render($_POST['pug'], $vars ?: [], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'compile') {
         echo $pug->getCompiler()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'parse') {

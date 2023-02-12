@@ -26,10 +26,10 @@ class SessionLocator extends \Phug\Compiler\Locator\FileLocator {
     }
 }
 
-$expressionLanguages = array(
+$expressionLanguages = [
   'php',
   'js'
-);
+];
 
 if (class_exists('\\NodejsPhpFallback\\NodejsPhpFallback')) {
     \NodejsPhpFallback\NodejsPhpFallback::setModulePath('pug-cli', __DIR__ . '/../node_modules/pug-cli');
@@ -44,11 +44,11 @@ if ($scopeEachVariables === 'true') {
     $scopeEachVariables = false;
 }
 
-$options = array(
+$options = [
     'debug'                => $renderingMode,
-    'lexer_options'        => array(
+    'lexer_options'        => [
         'allow_mixed_indent' => !empty($_POST['allowMixedIndent']),
-    ),
+    ],
     'locator_class_name'   => SessionLocator::class,
     'scope_each_variables' => $scopeEachVariables,
     'class_attribute'      => empty($_POST['classAttribute']) ? null : $_POST['classAttribute'],
@@ -65,10 +65,10 @@ $options = array(
         
         return file_get_contents($path);
     },
-    'filters'              => array(
+    'filters'              => [
         'markdown' => new \Pug\Filter\Markdown(),
-    ),
-);
+    ],
+];
 
 try {
     $vars = eval('return ' . $_POST['vars'] . ';');
@@ -80,7 +80,7 @@ try {
     $renderer = Phug::getRenderer($options);
     if ($renderingMode) {
         $method = method_exists($renderer, 'displayString') ? 'displayString' : 'display';
-        $renderer->$method($_POST['pug'], $vars ?: array(), __DIR__ . '/../index.pug');
+        $renderer->$method($_POST['pug'], $vars ?: [], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'compile') {
         echo $renderer->getCompiler()->dump($_POST['pug'], __DIR__ . '/../index.pug');
     } elseif ($_POST['mode'] === 'parse') {

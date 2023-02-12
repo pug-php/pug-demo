@@ -26,11 +26,11 @@ $apiContext = stream_context_create([
     ],
 ]);
 
-$enginesRepositories = array(
+$enginesRepositories = [
     'tale-pug' => 'Talesoft/tale-pug',
     'phug'     => 'phug-php/phug',
     'pug-php'  => 'pug-php/pug',
-);
+];
 
 foreach ($enginesRepositories as $repository => $url) {
     $optionsHtml = '';
@@ -39,7 +39,7 @@ foreach ($enginesRepositories as $repository => $url) {
     $versionCache = $cacheDirectory . DIRECTORY_SEPARATOR . $repository . '-tags.json';
     $versionFile = $versionCache;
     if (!file_exists($versionCache) || time() - filemtime($versionCache) > 3600) {
-        $list = array();
+        $list = [];
         for ($i = 1; true; $i++) {
             $items = @json_decode(file_get_contents(
                 $apiHost . 'repos/' . $url . '/tags?page=' . $i,
@@ -87,7 +87,7 @@ foreach ($enginesRepositories as $repository => $url) {
             chdir($versionDirectory);
             echo shell_exec('git clone ' . $gitHost . $url . ' .');
             echo shell_exec('git checkout tags/' . $tag->name);
-            foreach (array('tests', 'examples') as $ignore) {
+            foreach (['tests', 'examples'] as $ignore) {
                 if (file_exists($ignore)) {
                     shell_exec('rm -rf ' . $ignore);
                 }

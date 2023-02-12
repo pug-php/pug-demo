@@ -377,10 +377,10 @@ html(lang="en")
 <?php if (!isset($_GET['hide-vars'])) {
 ?><div id="vars"><?php if (isset($_GET['embed'])) {
     echo isset($_GET['vars']) ? $_GET['vars'] : '';
-} else { ?>array(
+} else { ?>[
   'pageTitle' => 'Try Pug.php and never recode HTML again',
   'youAreUsingJade' => true,
-)<?php }
+]<?php }
 ?></div><?php }
 ?>
 
