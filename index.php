@@ -428,7 +428,7 @@ if (!isset($_GET['embed'])) { ?>&lt;!DOCTYPE html>
     }
     var modeInput = document.querySelector('select[name="mode"]');
     var lastRequest;
-    var saveAs = <?php echo json_encode(urldecode($_GET['save_as'])); ?>;
+    var saveAs = <?php echo json_encode(urldecode($_GET['save_as'] ?? '')); ?>;
     var lastInput = '';
     var lastTime = 0;
     localStorage || (localStorage = {});
