@@ -9,7 +9,10 @@
         "post-autoload-dump": "php update.php"
     },
     "config": {
-        "process-timout": 10800
+        "process-timout": 10800,
+        "allow-plugins": {
+            "nodejs-php-fallback/nodejs-php-fallback": true
+        }
     },
     "extra": {
         "build": "2020-02-17 14:39:00"
